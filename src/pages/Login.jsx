@@ -47,6 +47,7 @@ const Login = () => {
             <li>Login Token to Maintain Session</li>
             <li>User Role-Based Interface</li>
             <li>Extended Account Details</li>
+            <li>Project management section</li>
           </ul>
         </div>
 
