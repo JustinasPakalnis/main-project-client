@@ -10,6 +10,13 @@
 
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   background-color: #fff;
+  border-radius: 1rem;
+  margin: 1rem;
+  transition: 0.1s;
+}
+.listContainer:hover {
+  outline: 3px solid rgb(233, 211, 211);
+  outline-offset: -3px;
 }
 
 .list {
@@ -26,8 +33,8 @@
   border-bottom: 2px solid #944c4c;
   margin-bottom: 10px;
   gap: 0.35rem;
-  position: relative;
 }
+
 .title p {
   width: 125px;
 }
@@ -93,13 +100,17 @@
   box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
   outline: none;
 }
+.searchBox {
+  position: relative;
+  padding: 0.5rem;
+}
 .searchBtn {
   height: 1.5rem;
   width: 1.5rem;
   color: #00000063;
   position: absolute;
-  left: 185px;
-  top: 20px;
+  left: 170px;
+  top: 13px;
 }
 .searchBtn:hover {
   cursor: pointer;

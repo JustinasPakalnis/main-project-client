@@ -9,17 +9,13 @@ const Header = () => {
 
   return (
     <header className={style.headerContainer}>
-      <div>
-        <BsFillMoonStarsFill
-          onClick={handleDarkThemeToggle}
-          className={style.themeToggle}
-          data-visible={darkTheme}
-        />
-        <FaSun
-          onClick={handleDarkThemeToggle}
-          className={style.themeToggle}
-          data-visible={!darkTheme}
-        />
+      <div className={style.headerUser}>
+        {authorizedUser.firstName && authorizedUser.lastName && (
+          <>
+            <p>User Type:</p>
+            <p>{authorizedUser.userType}</p>
+          </>
+        )}
       </div>
       <div className={style.headerContent}>
         <h1>Justinas Pakalnis</h1>

@@ -2,12 +2,16 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  background-color: #f0f0f0;
+  background-color: #ebe5e53a;
   padding: 15px;
   width: 250px;
-  height: 100vh;
+  height: 23rem;
+  border-radius: 0 0 1rem 1rem;
+  transition: 0.3s;
 }
-
+.navigationContainer:hover {
+  background-color: #e0b6b638; /* Light background on hover */
+}
 .navigationTitle {
   font-size: 1.5em;
   font-weight: bold;
@@ -25,6 +29,7 @@
 }
 .navButton[data-selected="true"] {
   text-decoration: underline;
+  background-color: #dcdcdc;
 }
 .navButton:hover {
   text-decoration: underline;
@@ -40,5 +45,6 @@
   text-decoration: underline;
 }
 .navLink:hover {
+  color: #007bff;
   text-decoration: underline;
 }

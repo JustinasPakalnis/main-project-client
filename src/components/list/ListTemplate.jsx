@@ -27,7 +27,7 @@ const ListTemplate = ({ props, type }) => {
   return (
     <>
       {" "}
-      <div className={style.title}>
+      <div className={style.searchBox}>
         <input
           className={style.formField}
           type="text"
