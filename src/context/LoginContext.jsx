@@ -43,7 +43,7 @@ export function LoginWrapper(props) {
     e.preventDefault();
 
     try {
-      const response = await axios.post("http://86.38.81.59:8800/api/login", {
+      const response = await axios.post("https://86.38.81.59:8800/api/login", {
         email: email,
         password: password,
       });
