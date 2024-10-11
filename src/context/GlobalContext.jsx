@@ -187,7 +187,7 @@ export function ContextWrapper(props) {
   const fetchTransferListData = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:8800/inventory/transferlist"
+        "https://main-project-backend-xcez.onrender.com/inventory/transferlist"
       );
       setTransferListData(res.data);
     } catch (err) {
@@ -199,7 +199,9 @@ export function ContextWrapper(props) {
   // Remowe selected item
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:8800/inventory/${id}`);
+      await axios.delete(
+        `https://main-project-backend-xcez.onrender.com/inventory/${id}`
+      );
       fetchAllItems();
     } catch (err) {
       console.log(err);
@@ -209,7 +211,10 @@ export function ContextWrapper(props) {
   const handleUpdateClick = async (e, item) => {
     e.preventDefault();
     try {
-      await axios.put("http://localhost:8800/inventory/" + itemID, item);
+      await axios.put(
+        "https://main-project-backend-xcez.onrender.com/inventory/" + itemID,
+        item
+      );
       fetchAllItems();
       handleUpdateActiveOFF();
       handleFieldClear();
@@ -222,7 +227,10 @@ export function ContextWrapper(props) {
     e.preventDefault();
     // handleFieldClear();
     try {
-      await axios.post("http://localhost:8800/inventory", item);
+      await axios.post(
+        "https://main-project-backend-xcez.onrender.com/inventory",
+        item
+      );
 
       fetchAllItems();
     } catch (err) {
@@ -235,7 +243,7 @@ export function ContextWrapper(props) {
     e.preventDefault();
     try {
       await axios.post(
-        "http://localhost:8800/inventory/transfer",
+        "https://main-project-backend-xcez.onrender.com/inventory/transfer",
         transferData
       );
       handleTransferMenuClose();
@@ -250,7 +258,7 @@ export function ContextWrapper(props) {
     e.preventDefault();
     try {
       await axios.put(
-        `http://localhost:8800/inventory/transfer/accept/${itemId}/${transferId}`,
+        `https://main-project-backend-xcez.onrender.com/inventory/transfer/accept/${itemId}/${transferId}`,
         authorizedUser
       );
       fetchTransferListData();
@@ -264,7 +272,7 @@ export function ContextWrapper(props) {
     e.preventDefault();
     try {
       await axios.put(
-        `http://localhost:8800/inventory/transfer/decline/${itemId}/${transferId}`
+        `https://main-project-backend-xcez.onrender.com/inventory/transfer/decline/${itemId}/${transferId}`
       );
       fetchTransferListData();
       fetchAllItems();

@@ -54,7 +54,9 @@ export function UserListWrapper(props) {
 
   const fetchAllUsers = async () => {
     try {
-      const res = await axios.get("http://localhost:8800/users");
+      const res = await axios.get(
+        "https://main-project-backend-xcez.onrender.com/users"
+      );
       setUsers(res.data);
     } catch (err) {
       console.log(err);
@@ -63,7 +65,9 @@ export function UserListWrapper(props) {
 
   const fetchAllUsersFullNames = async () => {
     try {
-      const res = await axios.get("http://localhost:8800/usersFullNames");
+      const res = await axios.get(
+        "https://main-project-backend-xcez.onrender.com/usersFullNames"
+      );
       setUsersFullNames(res.data);
     } catch (err) {
       console.log(err);
@@ -88,7 +92,10 @@ export function UserListWrapper(props) {
   const handleCreateUser = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:8800/users", userTemplate);
+      await axios.post(
+        "https://main-project-backend-xcez.onrender.com/users",
+        userTemplate
+      );
       fetchAllUsers();
       setUserTemplate(initialContext.userTemplate);
     } catch (err) {
@@ -103,11 +110,14 @@ export function UserListWrapper(props) {
   ) => {
     e.preventDefault();
     try {
-      await axios.post(`http://localhost:8800/users/comment`, {
-        comment,
-        userCommentID,
-        authorizedUser,
-      });
+      await axios.post(
+        `https://main-project-backend-xcez.onrender.com/users/comment`,
+        {
+          comment,
+          userCommentID,
+          authorizedUser,
+        }
+      );
       handleFieldClear();
       setUserCommentFieldOpen(false);
       setUserCommentID(null);
@@ -118,7 +128,9 @@ export function UserListWrapper(props) {
 
   const fetchUserComments = async (id, index) => {
     try {
-      const res = await axios.get(`http://localhost:8800/usercomments/${id}`);
+      const res = await axios.get(
+        `https://main-project-backend-xcez.onrender.com/usercomments/${id}`
+      );
       setUserComments(res.data);
       setUserCommentFieldOpen(false);
       setUserListCommentID(userListCommentID === index ? null : index);
