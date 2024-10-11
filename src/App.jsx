@@ -7,6 +7,7 @@ import { LoginWrapper } from "./context/LoginContext";
 import ProtectedRoute from "./components/protectedRoute/ProtectedRoute.jsx";
 import "./app.css";
 import MainPage from "./pages/MainPage.jsx";
+
 function App() {
   return (
     <>
