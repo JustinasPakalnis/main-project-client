@@ -19,7 +19,7 @@
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   background-color: #f9f9f9;
   gap: 3rem;
-  transition: min-height 0.3s ease;
+  transition: 0.3s ease;
 }
 
 .label {
