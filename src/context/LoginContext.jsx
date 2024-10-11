@@ -43,10 +43,13 @@ export function LoginWrapper(props) {
     e.preventDefault();
 
     try {
-      const response = await axios.post("https://86.38.81.59:8800/api/login", {
-        email: email,
-        password: password,
-      });
+      const response = await axios.post(
+        "https://main-project-backend-xcez.onrender.com/api/login",
+        {
+          email: email,
+          password: password,
+        }
+      );
 
       if (response.data.message === "Login approved") {
         setAuthorizedUser({
