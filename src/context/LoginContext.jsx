@@ -85,7 +85,7 @@ export function LoginWrapper(props) {
     }
   };
 
-  console.log(authorizedUser);
+  // console.log(authorizedUser);
 
   const value = {
     isAuthenticated,

@@ -9,8 +9,7 @@ const ListTemplate = ({ props, type }) => {
   const { darkTheme } = useContext(LoginContext);
   const [searchName, setSearchName] = useState("");
   const [newSearchList, setNewSearchList] = useState(props);
-  console.log(searchName);
-  console.log(props);
+
   const { authorizedUser } = useContext(LoginContext);
   useEffect(() => {
     setNewSearchList(props);

@@ -72,7 +72,7 @@ export function ContextWrapper(props) {
   const [transferListData, setTransferListData] = useState(
     initialContext.transferListData
   );
-  console.log(items);
+  // console.log(items);
 
   // ITEM array is filled with data ant first page opening
   useEffect(function () {
@@ -110,7 +110,7 @@ export function ContextWrapper(props) {
       [e.target.name]: parseInt(e.target.value),
     }));
   };
-  console.log(transferData);
+  // console.log(transferData);
 
   const handleTransferMenuOpen = (ID) => {
     setTransferData((prevData) => ({
