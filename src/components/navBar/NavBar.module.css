@@ -1,0 +1,44 @@
+.navigationContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background-color: #f0f0f0;
+  padding: 15px;
+  width: 250px;
+  height: 100vh;
+}
+
+.navigationTitle {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.navButton {
+  background-color: #6326260e;
+  color: #000000;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  border-radius: 0.5rem;
+}
+.navButton[data-selected="true"] {
+  text-decoration: underline;
+}
+.navButton:hover {
+  text-decoration: underline;
+}
+
+.navLink {
+  padding: 5px 0 5px 20px;
+
+  cursor: pointer;
+  color: #333;
+}
+.navLink[data-selected="true"] {
+  text-decoration: underline;
+}
+.navLink:hover {
+  text-decoration: underline;
+}
