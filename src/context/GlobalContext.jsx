@@ -176,7 +176,7 @@ export function ContextWrapper(props) {
   // Get data from SQL
   const fetchAllItems = async () => {
     try {
-      const res = await axios.get("http://localhost:8800/inventory");
+      const res = await axios.get("https://localhost:8800/inventory");
       setItems(res.data);
     } catch (err) {
       console.log(err);
