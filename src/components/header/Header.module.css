@@ -30,6 +30,8 @@
 }
 .headerUser {
   width: 300px;
+  display: flex;
+  flex-direction: column;
 }
 .themeToggle {
   height: 2rem;
@@ -37,4 +39,13 @@
 }
 .themeToggle[data-visible="true"] {
   display: none;
+}
+.logOut {
+  height: 2.5rem;
+  width: 2.5rem;
+  transition: 0.2s;
+}
+.logOut:hover {
+  cursor: pointer;
+  transform: scale(1.1);
 }

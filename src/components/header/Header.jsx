@@ -1,11 +1,15 @@
 import style from "./Header.module.css";
 import { LoginContext } from "../../context/LoginContext.jsx";
 import React, { useContext } from "react";
-import { BsFillMoonStarsFill } from "react-icons/bs";
-import { FaSun } from "react-icons/fa6";
+import { IoIosLogOut } from "react-icons/io";
 const Header = () => {
-  const { darkTheme, handleDarkThemeToggle, authorizedUser } =
-    useContext(LoginContext);
+  const {
+    darkTheme,
+    handleDarkThemeToggle,
+    authorizedUser,
+    handleLogOut,
+    isAuthenticated,
+  } = useContext(LoginContext);
 
   return (
     <header className={style.headerContainer}>
@@ -31,6 +35,9 @@ const Header = () => {
           </>
         )}
       </div>
+      {isAuthenticated && (
+        <IoIosLogOut onClick={handleLogOut} className={style.logOut} />
+      )}
     </header>
   );
 };

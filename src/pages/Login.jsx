@@ -47,7 +47,7 @@ const Login = () => {
             <li>Login Token to Maintain Session</li>
             <li>User Role-Based Interface</li>
             <li>Extended Account Details</li>
-            <li>Project management section</li>
+            <li>Project management section?Maybe???</li>
           </ul>
         </div>
 
@@ -55,13 +55,13 @@ const Login = () => {
           <p>
             Manage your inventory: create new items, transfer them between
             users, add new users, update item details, and leave comments or
-            feedback on users. Transfers can only be done for item owner
+            feedback on users. Transfers can only be done from item owner
             account.
           </p>
           <p>
-            Constantly improving—feel free to explore, test new features, and
-            enjoy my learning journey. Your feedback helps shape what's next.
-            Just remember to play nice and have fun!
+            Daily developing. Feel free to explore, test new features, and enjoy
+            my learning journey. Your feedback helps shape what's next. Just
+            remember to play nice there!
           </p>
           <address>
             +37069242305, Justinas Pakalnis,{" "}

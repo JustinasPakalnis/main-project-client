@@ -12,6 +12,7 @@ export const initialContext = {
   handleLogin: () => {},
   handleDarkThemeToggle: () => {},
   handleLoginMessage: () => {},
+  handleLogOut: () => {},
 };
 export const LoginContext = createContext(initialContext);
 
@@ -37,6 +38,11 @@ export function LoginWrapper(props) {
   };
   const handleLoginMessage = () => {
     setLoginMessage(false);
+  };
+  const handleLogOut = () => {
+    setIsAuthenticated(false);
+    setAuthorizedUser(initialContext.authorizedUser);
+    navigate("/");
   };
 
   const handleLogin = async (e, email, password) => {
@@ -97,6 +103,7 @@ export function LoginWrapper(props) {
     darkTheme,
     loginMessage,
     handleLoginMessage,
+    handleLogOut,
   };
   return (
     <LoginContext.Provider value={value}>
