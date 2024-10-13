@@ -13,7 +13,6 @@ function App() {
     <>
       <BrowserRouter>
         <LoginWrapper>
-          <Header />
           <Routes>
             <Route path="/" element={<Login />} />
             <Route

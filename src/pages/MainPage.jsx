@@ -10,11 +10,13 @@ import PersonellList from "../components/personellList/PersonellList.jsx";
 import RegistrationTemplate from "../components/registrationTemplate/RegistrationTemplate.jsx";
 import { GlobalContext } from "../context/GlobalContext";
 import style from "./Main.module.css";
+import Header from "../components/header/Header.jsx";
 const MainPage = () => {
   const { visibleItems, activeItems, transferItems, remowedItems } =
     useContext(GlobalContext);
   return (
     <>
+      <Header></Header>
       <section className={style.mainCotainer}>
         <NavBar></NavBar>
         <UserListWrapper>
