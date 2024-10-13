@@ -85,7 +85,7 @@ export function ContextWrapper(props) {
   useEffect(() => {
     const foundItem = items.find((s) => s.id === itemID);
     if (foundItem) {
-      console.log(foundItem);
+      // console.log(foundItem);
 
       setItem(foundItem);
     }
@@ -101,8 +101,6 @@ export function ContextWrapper(props) {
     setItem((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
   const handleTransferComment = (e) => {
-    console.log(e);
-
     setTransferData((prev) => ({
       ...prev,
       [e.target.name]: e.target.value,

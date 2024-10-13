@@ -29,7 +29,7 @@ const NavBar = () => {
         className={style.navButton}
         data-selected={selectedMenu === 1}
         onClick={() => {
-          navigate("/main/Inventory");
+          navigate("/main/FullInventory");
           fetchAllItems();
           setSelectedMenu(1);
           setinsertActive(false);
@@ -41,7 +41,7 @@ const NavBar = () => {
       </button>
       <span
         onClick={() => {
-          navigate("/main/Inventory");
+          navigate("/main/FullInventory");
           handleInsertActive();
           handleTransferMenuClose();
           handleUpdateActiveOFF();
@@ -57,7 +57,7 @@ const NavBar = () => {
       <span
         data-selected={selectedMenu === 2}
         onClick={() => {
-          navigate("/main/Inventory/active");
+          navigate("/main/Inventory/mylist");
           handleActiveItems();
           setSelectedMenu(2);
           handleTransferMenuClose();
@@ -65,7 +65,7 @@ const NavBar = () => {
         }}
         className={style.navLink}
       >
-        Active items
+        My items
       </span>
       <span
         data-selected={selectedMenu === 3}
@@ -108,11 +108,11 @@ const NavBar = () => {
       </span>
 
       <button
-        data-selected={selectedMenu === 5}
+        data-selected={selectedMenu === 6}
         className={style.navButton}
         onClick={() => {
           navigate("/main/Personell");
-          setSelectedMenu(5);
+          setSelectedMenu(6);
           handleTransferMenuClose();
           handleUpdateActiveOFF();
         }}
@@ -120,11 +120,11 @@ const NavBar = () => {
         Personell
       </button>
       <span
-        data-selected={selectedMenu === 6}
+        data-selected={selectedMenu === 7}
         className={style.navLink}
         onClick={() => {
           navigate("/main/createNewUser");
-          setSelectedMenu(6);
+          setSelectedMenu(7);
           handleTransferMenuClose();
           handleUpdateActiveOFF();
         }}

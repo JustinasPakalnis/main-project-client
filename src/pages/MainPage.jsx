@@ -4,7 +4,10 @@ import { UserListWrapper } from "../context/UserListContext";
 import SecondaryHeader from "../components/secondaryHeader/SecondaryHeader.jsx";
 import NavBar from "../components/navBar/NavBar.jsx";
 import InventoryList from "../components/list/List.jsx";
+import MyInventoryList from "../components/list/MyInventoryList.jsx";
+import FullInventoryList from "../components/list/FullInventoryList.jsx";
 import TransferList from "../components/list/TransferList.jsx";
+import RemovedInventory from "../components/list/RemovedInventory.jsx";
 import TransferHistoryList from "../components/list/TransferHistoryList.jsx";
 import PersonellList from "../components/personellList/PersonellList.jsx";
 import RegistrationTemplate from "../components/registrationTemplate/RegistrationTemplate.jsx";
@@ -20,19 +23,10 @@ const MainPage = () => {
         <NavBar></NavBar>
         <UserListWrapper>
           <Routes>
-            <Route path="/" element={<Navigate to="/main/Inventory" />} />
-            <Route
-              path="/Inventory"
-              element={<InventoryList props={visibleItems} type="All" />}
-            />
-            <Route
-              path="/Inventory/active"
-              element={<InventoryList props={activeItems} type="Active" />}
-            />
-            <Route
-              path="/Inventory/removed"
-              element={<InventoryList props={remowedItems} type="Removed" />}
-            />
+            <Route path="/" element={<Navigate to="/main/FullInventory" />} />
+            <Route path="/FullInventory" element={<FullInventoryList />} />
+            <Route path="/Inventory/mylist" element={<MyInventoryList />} />
+            <Route path="/Inventory/removed" element={<RemovedInventory />} />
             <Route
               path="/Inventory/transfers"
               element={<TransferList type="Transfer" />}
