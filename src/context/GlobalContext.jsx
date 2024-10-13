@@ -173,12 +173,11 @@ export function ContextWrapper(props) {
     fetchTransferListData();
   };
 
+  const serverAPI = "https://main-project-server.onrender.com";
   // Get data from SQL
   const fetchAllItems = async () => {
     try {
-      const res = await axios.get(
-        "https://main-project-backend-xcez.onrender.com/inventory"
-      );
+      const res = await axios.get(serverAPI + "/inventory");
       setItems(res.data);
     } catch (err) {
       console.log(err);
@@ -186,9 +185,7 @@ export function ContextWrapper(props) {
   };
   const fetchTransferListData = async () => {
     try {
-      const res = await axios.get(
-        "https://main-project-backend-xcez.onrender.com/inventory/transferlist"
-      );
+      const res = await axios.get(serverAPI + "/inventory/transferlist");
       setTransferListData(res.data);
     } catch (err) {
       console.log(err);
@@ -199,9 +196,7 @@ export function ContextWrapper(props) {
   // Remowe selected item
   const handleDelete = async (id) => {
     try {
-      await axios.delete(
-        `https://main-project-backend-xcez.onrender.com/inventory/${id}`
-      );
+      await axios.delete(`${serverAPI}/inventory/${id}`);
       fetchAllItems();
     } catch (err) {
       console.log(err);
@@ -211,10 +206,7 @@ export function ContextWrapper(props) {
   const handleUpdateClick = async (e, item) => {
     e.preventDefault();
     try {
-      await axios.put(
-        "https://main-project-backend-xcez.onrender.com/inventory/" + itemID,
-        item
-      );
+      await axios.put(serverAPI + "/inventory/" + itemID, item);
       fetchAllItems();
       handleUpdateActiveOFF();
       handleFieldClear();
@@ -227,10 +219,7 @@ export function ContextWrapper(props) {
     e.preventDefault();
     // handleFieldClear();
     try {
-      await axios.post(
-        "https://main-project-backend-xcez.onrender.com/inventory",
-        item
-      );
+      await axios.post(serverAPI + "/inventory", item);
 
       fetchAllItems();
     } catch (err) {
@@ -242,10 +231,7 @@ export function ContextWrapper(props) {
   const createTransfer = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(
-        "https://main-project-backend-xcez.onrender.com/inventory/transfer",
-        transferData
-      );
+      await axios.post(serverAPI + "/inventory/transfer", transferData);
       handleTransferMenuClose();
       fetchAllItems();
     } catch (err) {
@@ -258,7 +244,7 @@ export function ContextWrapper(props) {
     e.preventDefault();
     try {
       await axios.put(
-        `https://main-project-backend-xcez.onrender.com/inventory/transfer/accept/${itemId}/${transferId}`,
+        `${serverAPI}/inventory/transfer/accept/${itemId}/${transferId}`,
         authorizedUser
       );
       fetchTransferListData();
@@ -272,7 +258,7 @@ export function ContextWrapper(props) {
     e.preventDefault();
     try {
       await axios.put(
-        `https://main-project-backend-xcez.onrender.com/inventory/transfer/decline/${itemId}/${transferId}`
+        `${serverAPI}/inventory/transfer/decline/${itemId}/${transferId}`
       );
       fetchTransferListData();
       fetchAllItems();

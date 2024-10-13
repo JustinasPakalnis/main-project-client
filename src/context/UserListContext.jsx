@@ -89,13 +89,12 @@ export function UserListWrapper(props) {
     setUserTemplate((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
+  const serverAPI = "https://main-project-server.onrender.com";
+
   const handleCreateUser = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(
-        "https://main-project-backend-xcez.onrender.com/users",
-        userTemplate
-      );
+      await axios.post(serverAPI + "/users", userTemplate);
       fetchAllUsers();
       setUserTemplate(initialContext.userTemplate);
     } catch (err) {
@@ -110,14 +109,11 @@ export function UserListWrapper(props) {
   ) => {
     e.preventDefault();
     try {
-      await axios.post(
-        `https://main-project-backend-xcez.onrender.com/users/comment`,
-        {
-          comment,
-          userCommentID,
-          authorizedUser,
-        }
-      );
+      await axios.post(`${serverAPI}/users/comment`, {
+        comment,
+        userCommentID,
+        authorizedUser,
+      });
       handleFieldClear();
       setUserCommentFieldOpen(false);
       setUserCommentID(null);
@@ -128,9 +124,7 @@ export function UserListWrapper(props) {
 
   const fetchUserComments = async (id, index) => {
     try {
-      const res = await axios.get(
-        `https://main-project-backend-xcez.onrender.com/usercomments/${id}`
-      );
+      const res = await axios.get(`${serverAPI}/usercomments/${id}`);
       setUserComments(res.data);
       setUserCommentFieldOpen(false);
       setUserListCommentID(userListCommentID === index ? null : index);

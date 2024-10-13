@@ -64,7 +64,7 @@ const Login = () => {
             remember to play nice there!
           </p>
           <address>
-            +37069242305, Justinas Pakalnis,{" "}
+            +37069242305, Justinas Pakalnis,
             <a href="mailto:Justinas.p@inbox.lt">Justinas.p@inbox.lt</a>
           </address>
         </div>

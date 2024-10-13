@@ -1,13 +1,11 @@
 .loginContainer {
   padding: 5rem;
   display: flex;
-  /* justify-content: center; */
   gap: 2rem;
 }
 
 .login {
-  min-height: 500px;
-  max-height: 800px;
+  height: 500px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -18,7 +16,7 @@
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   background-color: #f9f9f9;
-  gap: 3rem;
+  gap: 1rem;
   transition: 0.3s ease;
 }
 
@@ -70,7 +68,6 @@
 }
 
 .message {
-  margin-top: 15px;
   color: red;
   font-weight: bold;
 

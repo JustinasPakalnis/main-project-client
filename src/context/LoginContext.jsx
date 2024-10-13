@@ -44,18 +44,15 @@ export function LoginWrapper(props) {
     setAuthorizedUser(initialContext.authorizedUser);
     navigate("/");
   };
-
+  const serverAPI = "https://main-project-server.onrender.com";
   const handleLogin = async (e, email, password) => {
     e.preventDefault();
 
     try {
-      const response = await axios.post(
-        "https://main-project-backend-xcez.onrender.com/api/login",
-        {
-          email: email,
-          password: password,
-        }
-      );
+      const response = await axios.post(serverAPI + "/api/login", {
+        email: email,
+        password: password,
+      });
 
       if (response.data.message === "Login approved") {
         setAuthorizedUser({
