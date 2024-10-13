@@ -29,7 +29,7 @@ const MainPage = () => {
               element={<InventoryList props={activeItems} type="Active" />}
             />
             <Route
-              path="/Inventory/remowed"
+              path="/Inventory/removed"
               element={<InventoryList props={remowedItems} type="Removed" />}
             />
             <Route

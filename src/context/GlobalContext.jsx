@@ -196,7 +196,7 @@ export function ContextWrapper(props) {
   // Remowe selected item
   const handleDelete = async (id) => {
     try {
-      await axios.put(`${serverAPI}/inventory/${id}`);
+      await axios.put(`${serverAPI}/inventory/delete/${id}`);
       fetchAllItems();
     } catch (err) {
       console.log(err);
@@ -207,6 +207,9 @@ export function ContextWrapper(props) {
     e.preventDefault();
     try {
       await axios.put(serverAPI + "/inventory/" + itemID, item);
+      console.log(itemID);
+      console.log(item);
+
       fetchAllItems();
       handleUpdateActiveOFF();
       handleFieldClear();
@@ -272,7 +275,7 @@ export function ContextWrapper(props) {
   useEffect(
     function () {
       setActiveItems(items.filter((item) => item.status === "Active"));
-      setRemowedItems(items.filter((item) => item.status === "Remowed"));
+      setRemowedItems(items.filter((item) => item.status === "Removed"));
       setTransferItems(items.filter((item) => item.status === "Transfer"));
       setVisibleItems(items); // Show all items by defaul
     },

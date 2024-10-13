@@ -62,7 +62,7 @@ const NavBar = () => {
       <span
         data-selected={selectedMenu === 3}
         onClick={() => {
-          navigate("/main/Inventory/remowed");
+          navigate("/main/Inventory/removed");
           handleRemowedItems();
           setSelectedMenu(3);
         }}

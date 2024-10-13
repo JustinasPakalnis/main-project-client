@@ -42,6 +42,7 @@ const ListTemplate = ({ props, type }) => {
         <p>Owner</p>
         <p>Condition</p>
         <p>Location</p>
+        {type === "All" ? <p>Status</p> : null}
         <p>Value</p>
         <p>Date created</p>
         <p>Comment</p>
@@ -61,33 +62,44 @@ const ListTemplate = ({ props, type }) => {
             <p>{item.owner}</p>
             <p>{item.condition}</p>
             <p>{item.location}</p>
+            {type === "All" ? <p>{item.status}</p> : null}
             <p>{item.value.toFixed(2)} Eur</p>
             <p>{new Date(item.createdate).toLocaleDateString()}</p>
             <p>{item.comment}</p>
-            <div className={style.buttonBlock}>
-              <button
-                className={style.button}
-                onClick={() => handleUpdateActive(item.id)}
-              >
-                Update
-              </button>
-              <button
-                className={`${style.button} ${style.btnDelete}`}
-                onClick={() => handleDelete(item.id)}
-              >
-                Delete
-              </button>{" "}
-              {type === "Active" &&
-              authorizedUser.firstName + " " + authorizedUser.lastName ===
-                item.owner ? (
+            {type === "All" ? (
+              <>
+                <span className={style.space2}></span>
+                <span className={style.space2}></span>
+              </>
+            ) : (
+              <div className={style.buttonBlock}>
                 <button
-                  className={`${style.button} ${style.btnDelete}`}
-                  onClick={() => handleTransferMenuOpen(item.id)}
+                  className={style.button}
+                  onClick={() => handleUpdateActive(item.id)}
                 >
-                  Transfer
+                  Update
                 </button>
-              ) : null}
-            </div>
+                {type === "Remowed" || item.status === "Removed" ? null : (
+                  <button
+                    className={`${style.button} ${style.btnDelete}`}
+                    onClick={() => handleDelete(item.id)}
+                  >
+                    Delete
+                  </button>
+                )}
+
+                {type === "Active" &&
+                authorizedUser.firstName + " " + authorizedUser.lastName ===
+                  item.owner ? (
+                  <button
+                    className={`${style.button} ${style.btnDelete}`}
+                    onClick={() => handleTransferMenuOpen(item.id)}
+                  >
+                    Transfer
+                  </button>
+                ) : null}
+              </div>
+            )}
           </li>
         ))}
       </ul>
