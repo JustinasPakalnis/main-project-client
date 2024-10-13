@@ -196,7 +196,7 @@ export function ContextWrapper(props) {
   // Remowe selected item
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`${serverAPI}/inventory/${id}`);
+      await axios.put(`${serverAPI}/inventory/${id}`);
       fetchAllItems();
     } catch (err) {
       console.log(err);
