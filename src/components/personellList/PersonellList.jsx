@@ -17,7 +17,6 @@ const PersonellList = () => {
     userCommentID,
     userListCommentID,
   } = useContext(UserListContext);
-  console.log(userListCommentID);
 
   const { authorizedUser } = useContext(LoginContext);
   const selectedUser = users.find((user) => user.id === userCommentID);
@@ -25,6 +24,7 @@ const PersonellList = () => {
   return (
     <>
       <section className={style.usersListContainer}>
+        <h1 className={style.headerTitle}>Porsonell list</h1>
         <div className={style.commentBox} data-visible={userCommentFieldOpen}>
           {selectedUser && (
             <p>
@@ -68,13 +68,11 @@ const PersonellList = () => {
         </div>
         <div className={style.listContainer}>
           <ul className={style.list}>
-            <div className={style.title}>
-              <p>Name</p>
-
-              <p>User status</p>
-
-              <p>Email addres</p>
-              <p>User Type</p>
+            <div className={style.headerRow}>
+              <p className={style.nr1}>Name</p>
+              <p className={style.nr1}>User status</p>
+              <p className={style.nr1}>Email addres</p>
+              <p className={style.nr1}>User Type</p>
             </div>
             {users.map((users, index) => (
               <div
@@ -89,10 +87,12 @@ const PersonellList = () => {
                       : `${style.listItem} ${style.listItem2}`
                   }
                 >
-                  <p>{users.firstName + " " + users.lastName}</p>
-                  <p>{users.userstatus}</p>
-                  <p>{users.email}</p>
-                  <p>{users.type}</p>
+                  <p className={style.nr1}>
+                    {users.firstName + " " + users.lastName}
+                  </p>
+                  <p className={style.nr1}>{users.userstatus}</p>
+                  <p className={style.nr1}>{users.email}</p>
+                  <p className={style.nr1}>{users.type}</p>
                   <div className={style.buttons}>
                     {authorizedUser.firstName +
                       " " +

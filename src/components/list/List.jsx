@@ -21,14 +21,10 @@ const InventoryList = ({ props, type }) => {
   return (
     <>
       <section>
-        <SecondaryHeader></SecondaryHeader>
-        <div className={style.mainListContainer}>
-          <Add></Add>
-          <Update></Update>
-          <Transfer></Transfer>
-          <div className={style.listContainer}>
-            <ListTemplate props={props} type={type} />
-          </div>
+        <Update></Update>
+        <Transfer></Transfer>
+        <div className={style.s}>
+          <ListTemplate props={props} type={type} />
         </div>
       </section>
     </>

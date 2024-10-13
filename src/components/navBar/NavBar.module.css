@@ -6,11 +6,12 @@
   padding: 15px;
   width: 250px;
   height: 28rem;
-  border-radius: 0 0 1rem 1rem;
+  border-radius: 0 0 1rem 0;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   transition: 0.3s;
 }
 .navigationContainer:hover {
-  background-color: #e0b6b638; /* Light background on hover */
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
 }
 .navigationTitle {
   font-size: 1.5em;

@@ -1,26 +1,27 @@
 import { useContext, useState, useEffect } from "react";
 import style from "./General.module.css";
+import Add from "../newItem/Add.jsx";
 import { GlobalContext } from "../../context/GlobalContext";
 import { LoginContext } from "../../context/LoginContext.jsx";
 import { FaSearch } from "react-icons/fa";
-const ListTemplate = ({ props, type }) => {
+const FullInventoryList = () => {
   const {
+    items,
     handleDelete,
     handleUpdateActive,
     handleTransferMenuOpen,
     transferClickID,
   } = useContext(GlobalContext);
-
   const [searchName, setSearchName] = useState("");
-  const [newSearchList, setNewSearchList] = useState(props);
+  const [newSearchList, setNewSearchList] = useState(items);
   const { authorizedUser } = useContext(LoginContext);
   useEffect(() => {
-    setNewSearchList(props);
-  }, [props]);
+    setNewSearchList(items);
+  }, [items]);
 
   function handleSearch() {
     setNewSearchList(
-      props.filter((item) =>
+      items.filter((item) =>
         item.item.toLowerCase().includes(searchName.toLowerCase())
       )
     );
@@ -29,6 +30,7 @@ const ListTemplate = ({ props, type }) => {
   return (
     <>
       <div className={style.mainListContainer}>
+        <Add></Add>
         <div className={style.listContainer}>
           <div className={style.searchBox}>
             <input
@@ -41,6 +43,7 @@ const ListTemplate = ({ props, type }) => {
             />
             <FaSearch className={style.searchBtn} onClick={handleSearch} />
           </div>
+
           <div className={style.itemListContainer}>
             <div className={style.headerRow}>
               <p className={style.nr1}>Item</p>
@@ -52,16 +55,16 @@ const ListTemplate = ({ props, type }) => {
               <p className={style.nr7}>Date created</p>
               <p className={style.nr8}>Comment</p>
             </div>
+
             <ul className={style.list}>
               {newSearchList.map((item, index) => (
                 <li
+                  key={item.id}
                   className={
                     index % 2 === 0
                       ? style.listItem
                       : `${style.listItem} ${style.listItem2}`
                   }
-                  data-checkedtransfer={transferClickID === index}
-                  key={item.id}
                 >
                   <p className={style.nr1}>{item.item}</p>
                   <p className={style.nr2}>{item.owner}</p>
@@ -71,26 +74,6 @@ const ListTemplate = ({ props, type }) => {
                   <p className={style.nr6}>{item.value.toFixed(2)} Eur</p>
                   <p className={style.nr7}>{item.createdate}</p>
                   <p className={style.nr8}>{item.comment}</p>
-                  <div className={style.buttonBlock}>
-                    <button
-                      className={style.button}
-                      onClick={() => handleUpdateActive(item.id)}
-                    >
-                      Update
-                    </button>
-                    <button
-                      className={`${style.button} ${style.btnDelete}`}
-                      onClick={() => handleDelete(item.id)}
-                    >
-                      Delete
-                    </button>
-                    <button
-                      className={`${style.button} ${style.btnDelete}`}
-                      onClick={() => handleTransferMenuOpen(item.id, index)}
-                    >
-                      Transfer
-                    </button>
-                  </div>
                 </li>
               ))}
             </ul>
@@ -101,4 +84,4 @@ const ListTemplate = ({ props, type }) => {
   );
 };
 
-export default ListTemplate;
+export default FullInventoryList;
