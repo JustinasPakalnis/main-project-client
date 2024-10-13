@@ -11,7 +11,6 @@ const Login = () => {
 
   return (
     <>
-      <Header></Header>
       <section className={style.loginContainer}>
         <section className={style.infoContainer}>
           <div className={style.hostingDetails}>

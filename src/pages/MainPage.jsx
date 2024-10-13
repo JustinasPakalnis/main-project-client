@@ -16,7 +16,6 @@ const MainPage = () => {
     useContext(GlobalContext);
   return (
     <>
-      <Header></Header>
       <section className={style.mainCotainer}>
         <NavBar></NavBar>
         <UserListWrapper>

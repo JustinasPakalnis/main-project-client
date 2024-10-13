@@ -11,6 +11,7 @@ import MainPage from "./pages/MainPage.jsx";
 function App() {
   return (
     <>
+      <Header></Header>
       <BrowserRouter>
         <LoginWrapper>
           <Routes>
