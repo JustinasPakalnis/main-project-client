@@ -79,7 +79,18 @@ const NavBar = () => {
         }}
         className={style.navLink}
       >
-        Item transfers
+        Pending transfers
+      </span>
+      <span
+        data-selected={selectedMenu === 5}
+        onClick={() => {
+          navigate("/main/Inventory/transfers/history");
+          handleTranfsersItems();
+          setSelectedMenu(5);
+        }}
+        className={style.navLink}
+      >
+        Transfers history
       </span>
 
       <button

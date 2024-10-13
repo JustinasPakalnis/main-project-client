@@ -5,6 +5,7 @@ import SecondaryHeader from "../components/secondaryHeader/SecondaryHeader.jsx";
 import NavBar from "../components/navBar/NavBar.jsx";
 import InventoryList from "../components/list/List.jsx";
 import TransferList from "../components/list/TransferList.jsx";
+import TransferHistoryList from "../components/list/TransferHistoryList.jsx";
 import PersonellList from "../components/personellList/PersonellList.jsx";
 import RegistrationTemplate from "../components/registrationTemplate/RegistrationTemplate.jsx";
 import { GlobalContext } from "../context/GlobalContext";
@@ -29,11 +30,15 @@ const MainPage = () => {
             />
             <Route
               path="/Inventory/remowed"
-              element={<InventoryList props={remowedItems} type="Remowed" />}
+              element={<InventoryList props={remowedItems} type="Removed" />}
             />
             <Route
               path="/Inventory/transfers"
               element={<TransferList type="Transfer" />}
+            />
+            <Route
+              path="/Inventory/transfers/history"
+              element={<TransferHistoryList type="history" />}
             />
             <Route path="/Personell" element={<PersonellList />} />
             <Route path="/createNewUser" element={<RegistrationTemplate />} />

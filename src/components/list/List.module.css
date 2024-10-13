@@ -115,3 +115,19 @@
 .searchBtn:hover {
   cursor: pointer;
 }
+.listTitles {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  padding: 0 15px;
+  border-radius: 10px;
+  transition: background-color 0.3s ease;
+  height: 3rem;
+}
+.listTitles p {
+  width: 200px;
+  font-weight: 700;
+}
+.space {
+  width: 75px;
+}

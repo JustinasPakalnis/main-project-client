@@ -11,7 +11,7 @@ const TransferList = ({ type }) => {
   return (
     <>
       <section className={style.transferContainer}>
-        <h1 className={style.transferTitle}>Your pending transfers</h1>
+        <h1 className={style.transferTitle}>All transfers history</h1>
         <div className={style.listContainer}>
           <div className={style.listTitles}>
             <p>Item name</p>
@@ -19,14 +19,12 @@ const TransferList = ({ type }) => {
             <p>To user</p>
             <p>Condition</p>
             <p>Transfer comment</p>
+            <p>Transfer status</p>
             <p>Transfer date</p>
-            <span className={style.space}></span>
-            <span className={style.space}></span>
           </div>
           <ul className={style.list}>
             {transferListData.map((item) =>
-              item.status === "pending" &&
-              authorizedUser.userID === item.to_user ? (
+              item.status === "completed" || item.status === "declined" ? (
                 <li
                   className={
                     displayedIndex++ % 2 === 0
@@ -40,19 +38,8 @@ const TransferList = ({ type }) => {
                   <p>{item.toUserFullName}</p>
                   <p>{item.condition}</p>
                   <p>{item.transfer_comment}</p>
+                  <p>{item.status}</p>
                   <p>{item.transfer_date.split("T").join(" ").slice(0, 16)}</p>
-                  <button
-                    className={style.button}
-                    onClick={(e) => acceptTransfer(e, item.item_id, item.id)}
-                  >
-                    Accept
-                  </button>
-                  <button
-                    className={style.button}
-                    onClick={(e) => declineTransfer(e, item.item_id, item.id)}
-                  >
-                    Decline
-                  </button>
                 </li>
               ) : null
             )}
