@@ -11,9 +11,9 @@ import MainPage from "./pages/MainPage.jsx";
 function App() {
   return (
     <>
-      <Header></Header>
       <BrowserRouter>
         <LoginWrapper>
+          <Header />
           <Routes>
             <Route path="/" element={<Login />} />
             <Route
