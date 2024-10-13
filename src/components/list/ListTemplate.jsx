@@ -4,10 +4,15 @@ import { GlobalContext } from "../../context/GlobalContext";
 import { LoginContext } from "../../context/LoginContext.jsx";
 import { FaSearch } from "react-icons/fa";
 const ListTemplate = ({ props, type }) => {
-  const { handleDelete, handleUpdateActive, handleTransferMenuOpen } =
-    useContext(GlobalContext);
+  const {
+    handleDelete,
+    handleUpdateActive,
+    handleTransferMenuOpen,
+    transferClickID,
+  } = useContext(GlobalContext);
   const { darkTheme } = useContext(LoginContext);
   const [searchName, setSearchName] = useState("");
+
   const [newSearchList, setNewSearchList] = useState(props);
 
   const { authorizedUser } = useContext(LoginContext);
@@ -25,7 +30,6 @@ const ListTemplate = ({ props, type }) => {
 
   return (
     <>
-      {" "}
       <div className={style.searchBox}>
         <input
           className={style.formField}
@@ -55,7 +59,7 @@ const ListTemplate = ({ props, type }) => {
                 ? style.listItem
                 : `${style.listItem} ${style.listItem2}`
             }
-            data-visible={darkTheme}
+            data-checkedtransfer={transferClickID === index}
             key={item.id}
           >
             <p>{item.item}</p>
@@ -93,7 +97,7 @@ const ListTemplate = ({ props, type }) => {
                   item.owner ? (
                   <button
                     className={`${style.button} ${style.btnDelete}`}
-                    onClick={() => handleTransferMenuOpen(item.id)}
+                    onClick={() => handleTransferMenuOpen(item.id, index)}
                   >
                     Transfer
                   </button>

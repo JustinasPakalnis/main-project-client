@@ -61,7 +61,7 @@ const AddUpdateTemplate = () => {
             Select status
           </option>
           <option value="Active">Active</option>
-          <option value="Remowed">Remowed</option>
+          <option value="Removed">Removed</option>
         </select>
         <select
           className={style.formField}

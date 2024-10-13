@@ -12,7 +12,7 @@ export const initialContext = {
   selectedMenu: 0,
   transfervisible: false,
   transferListData: {},
-
+  transferClickID: null,
   transferData: {
     itemID: null,
     fromUser: null,
@@ -72,6 +72,9 @@ export function ContextWrapper(props) {
   const [transferListData, setTransferListData] = useState(
     initialContext.transferListData
   );
+  const [transferClickID, setTransferClickID] = useState(
+    initialContext.transferClickID
+  );
   // console.log(items);
 
   // ITEM array is filled with data ant first page opening
@@ -82,6 +85,8 @@ export function ContextWrapper(props) {
   useEffect(() => {
     const foundItem = items.find((s) => s.id === itemID);
     if (foundItem) {
+      console.log(foundItem);
+
       setItem(foundItem);
     }
     fetchTransferListData();
@@ -112,7 +117,7 @@ export function ContextWrapper(props) {
   };
   // console.log(transferData);
 
-  const handleTransferMenuOpen = (ID) => {
+  const handleTransferMenuOpen = (ID, index) => {
     setTransferData((prevData) => ({
       ...prevData,
       itemID: ID,
@@ -122,10 +127,12 @@ export function ContextWrapper(props) {
     setTransfervisible(true);
     handleUpdateActiveOFF();
     setinsertActive(false);
+    setTransferClickID(index);
   };
   const handleTransferMenuClose = () => {
     setTransferData(initialContext.transferData);
     setTransfervisible(false);
+    setTransferClickID(null);
   };
 
   // INSERT NEW ITEM AND UPDATE ITEM WINDOW
@@ -321,6 +328,8 @@ export function ContextWrapper(props) {
     transferListData,
     acceptTransfer,
     declineTransfer,
+    transferClickID,
+    setTransferClickID,
   };
   return (
     <GlobalContext.Provider value={value}>

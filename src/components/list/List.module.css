@@ -135,3 +135,6 @@
 .space2 {
   width: 65px;
 }
+.listItem[data-checkedtransfer="true"] {
+  background-color: #8b76769c;
+}

@@ -16,6 +16,9 @@ const NavBar = () => {
     setSelectedMenu,
     setinsertActive,
     setUpdateActive,
+    setTransferClickID,
+    handleTransferMenuClose,
+    handleUpdateActiveOFF,
   } = useContext(GlobalContext);
 
   return (
@@ -30,7 +33,8 @@ const NavBar = () => {
           fetchAllItems();
           setSelectedMenu(1);
           setinsertActive(false);
-          setUpdateActive(false);
+          handleTransferMenuClose();
+          handleUpdateActiveOFF();
         }}
       >
         Inventory
@@ -38,10 +42,12 @@ const NavBar = () => {
       <span
         onClick={() => {
           navigate("/main/Inventory");
-          handleInsertActive(); // Call the first function
+          handleInsertActive();
+          handleTransferMenuClose();
+          handleUpdateActiveOFF();
           {
             selectedMenu === 8 ? setSelectedMenu(1) : setSelectedMenu(8);
-          } // Then call the second function
+          }
         }}
         data-selected={selectedMenu === 8}
         className={style.navLink}
@@ -54,6 +60,8 @@ const NavBar = () => {
           navigate("/main/Inventory/active");
           handleActiveItems();
           setSelectedMenu(2);
+          handleTransferMenuClose();
+          handleUpdateActiveOFF();
         }}
         className={style.navLink}
       >
@@ -65,6 +73,8 @@ const NavBar = () => {
           navigate("/main/Inventory/removed");
           handleRemowedItems();
           setSelectedMenu(3);
+          handleTransferMenuClose();
+          handleUpdateActiveOFF();
         }}
         className={style.navLink}
       >
@@ -76,6 +86,8 @@ const NavBar = () => {
           navigate("/main/Inventory/transfers");
           handleTranfsersItems();
           setSelectedMenu(4);
+          handleTransferMenuClose();
+          handleUpdateActiveOFF();
         }}
         className={style.navLink}
       >
@@ -87,6 +99,8 @@ const NavBar = () => {
           navigate("/main/Inventory/transfers/history");
           handleTranfsersItems();
           setSelectedMenu(5);
+          handleTransferMenuClose();
+          handleUpdateActiveOFF();
         }}
         className={style.navLink}
       >
@@ -99,6 +113,8 @@ const NavBar = () => {
         onClick={() => {
           navigate("/main/Personell");
           setSelectedMenu(5);
+          handleTransferMenuClose();
+          handleUpdateActiveOFF();
         }}
       >
         Personell
@@ -109,6 +125,8 @@ const NavBar = () => {
         onClick={() => {
           navigate("/main/createNewUser");
           setSelectedMenu(6);
+          handleTransferMenuClose();
+          handleUpdateActiveOFF();
         }}
       >
         Create new USER

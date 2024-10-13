@@ -11,6 +11,7 @@ const Transfer = () => {
     handleTransferComment,
     transfervisible,
     handleTransferMenuClose,
+    items,
   } = useContext(GlobalContext);
   const { usersFullNames } = useContext(UserListContext);
   const { authorizedUser } = useContext(LoginContext);
