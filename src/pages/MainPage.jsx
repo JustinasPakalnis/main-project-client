@@ -23,19 +23,19 @@ const MainPage = () => {
         <NavBar></NavBar>
         <UserListWrapper>
           <Routes>
-            <Route path="/" element={<Navigate to="/main/FullInventory" />} />
-            <Route path="/FullInventory" element={<FullInventoryList />} />
-            <Route path="/Inventory/mylist" element={<MyInventoryList />} />
-            <Route path="/Inventory/removed" element={<RemovedInventory />} />
+            <Route path="/" element={<Navigate to="/main/fullinventory" />} />
+            <Route path="/fullinventory" element={<FullInventoryList />} />
+            <Route path="/inventory/mylist" element={<MyInventoryList />} />
+            <Route path="/inventory/removed" element={<RemovedInventory />} />
             <Route
-              path="/Inventory/transfers"
-              element={<TransferList type="Transfer" />}
+              path="/inventory/transfers"
+              element={<TransferList type="transfer" />}
             />
             <Route
-              path="/Inventory/transfers/history"
+              path="/inventory/transfers/history"
               element={<TransferHistoryList type="history" />}
             />
-            <Route path="/Personell" element={<PersonellList />} />
+            <Route path="/personell" element={<PersonellList />} />
             <Route path="/createNewUser" element={<RegistrationTemplate />} />
           </Routes>
         </UserListWrapper>
