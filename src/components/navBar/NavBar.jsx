@@ -29,7 +29,7 @@ const NavBar = () => {
         className={style.navButton}
         data-selected={selectedMenu === 1}
         onClick={() => {
-          navigate("/main/FullInventory");
+          navigate("/main/fullinventory");
           fetchAllItems();
           setSelectedMenu(1);
           setinsertActive(false);
@@ -41,7 +41,7 @@ const NavBar = () => {
       </button>
       <span
         onClick={() => {
-          navigate("/main/FullInventory");
+          navigate("/main/fullinventory");
           handleInsertActive();
           handleTransferMenuClose();
           handleUpdateActiveOFF();
@@ -57,7 +57,7 @@ const NavBar = () => {
       <span
         data-selected={selectedMenu === 2}
         onClick={() => {
-          navigate("/main/Inventory/mylist");
+          navigate("/main/inventory/mylist");
           handleActiveItems();
           setSelectedMenu(2);
           handleTransferMenuClose();
@@ -70,7 +70,7 @@ const NavBar = () => {
       <span
         data-selected={selectedMenu === 3}
         onClick={() => {
-          navigate("/main/Inventory/removed");
+          navigate("/main/inventory/removed");
           handleRemowedItems();
           setSelectedMenu(3);
           handleTransferMenuClose();
@@ -83,7 +83,7 @@ const NavBar = () => {
       <span
         data-selected={selectedMenu === 4}
         onClick={() => {
-          navigate("/main/Inventory/transfers");
+          navigate("/main/inventory/transfers");
           handleTranfsersItems();
           setSelectedMenu(4);
           handleTransferMenuClose();
@@ -96,7 +96,7 @@ const NavBar = () => {
       <span
         data-selected={selectedMenu === 5}
         onClick={() => {
-          navigate("/main/Inventory/transfers/history");
+          navigate("/main/inventory/transfers/history");
           handleTranfsersItems();
           setSelectedMenu(5);
           handleTransferMenuClose();
@@ -111,7 +111,7 @@ const NavBar = () => {
         data-selected={selectedMenu === 6}
         className={style.navButton}
         onClick={() => {
-          navigate("/main/Personell");
+          navigate("/main/personell");
           setSelectedMenu(6);
           handleTransferMenuClose();
           handleUpdateActiveOFF();
@@ -123,7 +123,7 @@ const NavBar = () => {
         data-selected={selectedMenu === 7}
         className={style.navLink}
         onClick={() => {
-          navigate("/main/createNewUser");
+          navigate("/main/createnewuser");
           setSelectedMenu(7);
           handleTransferMenuClose();
           handleUpdateActiveOFF();
