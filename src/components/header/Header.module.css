@@ -9,9 +9,12 @@
   height: 80px;
   padding: 0 20px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
-  width: 100vw;
 }
-
+@media (max-width: 1000px) {
+  .headerContainer {
+    width: 145vw;
+  }
+}
 .headerContent {
   width: 100%;
 }
