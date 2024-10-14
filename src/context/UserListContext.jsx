@@ -51,7 +51,9 @@ export function UserListWrapper(props) {
   const handlefieldChange = (e) => {
     setUserComment(e.target.value);
   };
-
+  useEffect(function () {
+    fetchAllUsers();
+  }, []);
   const fetchAllUsers = async () => {
     try {
       const res = await axios.get(
@@ -62,6 +64,7 @@ export function UserListWrapper(props) {
       console.log(err);
     }
   };
+  console.log(users);
 
   const fetchAllUsersFullNames = async () => {
     try {
