@@ -79,11 +79,6 @@ export function UserListWrapper(props) {
     fetchAllUsersFullNames();
     setUserTemplate(initialContext.userTemplate);
   }, []);
-  // console.log(usersFullNames);
-
-  // useEffect(function () {
-  //   setUserTemplate(initialContext.userTemplate);
-  // }, []);
 
   const handleInputChange = (e) => {
     setUserTemplate((prev) => ({ ...prev, [e.target.name]: e.target.value }));
