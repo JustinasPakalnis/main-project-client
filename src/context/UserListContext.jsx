@@ -51,25 +51,18 @@ export function UserListWrapper(props) {
   const handlefieldChange = (e) => {
     setUserComment(e.target.value);
   };
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      fetchAllUsers();
-    }, 1000);
-    return () => clearTimeout(timer);
+  useEffect(function () {
+    fetchAllUsers();
   }, []);
-  const fetchAllUsers = async (retryCount = 3) => {
+
+  const fetchAllUsers = async () => {
     try {
       const res = await axios.get(
         "https://main-project-backend-xcez.onrender.com/users"
       );
       setUsers(res.data);
     } catch (err) {
-      if (retryCount > 0) {
-        console.log(`Retrying... Attempts left: ${retryCount}`);
-        fetchAllUsers(retryCount - 1); // Retry fetching
-      } else {
-        console.error("Failed to fetch users:", err);
-      }
+      console.log(err);
     }
   };
   console.log(users);
@@ -171,6 +164,7 @@ export function UserListWrapper(props) {
     userCommentFieldOpen,
     handleUserCommentMenuClose,
     userCommentID,
+    fetchAllUsers,
   };
   return (
     <UserListContext.Provider value={value}>
