@@ -131,7 +131,6 @@
   flex-direction: column;
   gap: 1rem;
 
-  background-color: #f4f4f4;
   border-radius: 8px;
 }
 
@@ -157,7 +156,7 @@
 }
 .letterCount {
   position: absolute;
-  top: 133px;
+  top: 200px;
   left: 570px;
   font-size: 0.7rem;
   color: grey;
