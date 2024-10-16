@@ -3,9 +3,11 @@ import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { LoginContext } from "../../context/LoginContext.jsx";
 import { GlobalContext } from "../../context/GlobalContext";
+import { UserListContext } from "../../context/UserListContext.jsx";
 const NavBar = () => {
   const navigate = useNavigate();
   const { darkTheme } = useContext(LoginContext);
+  const { fetchAllUsers } = useContext(UserListContext);
   const {
     handleInsertActive,
     fetchAllItems,
@@ -112,6 +114,7 @@ const NavBar = () => {
         className={style.navButton}
         onClick={() => {
           navigate("/main/personell");
+          fetchAllUsers();
           setSelectedMenu(6);
           handleTransferMenuClose();
           handleUpdateActiveOFF();
