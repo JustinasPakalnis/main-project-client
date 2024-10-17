@@ -16,10 +16,25 @@ const PersonellList = () => {
     handleUserCommentMenuClose,
     userCommentID,
     userListCommentID,
+    setUserListCommentID,
   } = useContext(UserListContext);
 
   const { authorizedUser } = useContext(LoginContext);
   const selectedUser = users.find((user) => user.id === userCommentID);
+  const [selectedList, setSelectedList] = useState("All");
+  const [mapingList, setMapingList] = useState(users);
+  function handleSelectList(e) {
+    setUserListCommentID(null);
+    setSelectedList(e.target.value);
+  }
+  useEffect(() => {
+    setMapingList(users);
+  }, []);
+  useEffect(() => {
+    selectedList === "All"
+      ? setMapingList(users)
+      : setMapingList(users.filter((user) => user.userstatus === selectedList));
+  }, [selectedList]);
 
   return (
     <>
@@ -28,7 +43,7 @@ const PersonellList = () => {
         <div className={style.commentBox} data-visible={userCommentFieldOpen}>
           {selectedUser && (
             <p>
-              Comment something about: {selectedUser.firstName}{" "}
+              Comment something about: {selectedUser.firstName}
               {selectedUser.lastName}
             </p>
           )}
@@ -69,12 +84,28 @@ const PersonellList = () => {
         <div className={style.listContainer}>
           <ul className={style.list}>
             <div className={style.headerRow}>
-              <p className={style.nr1}>Name</p>
+              <p className={style.nr1AndSelect}>
+                Name{" "}
+                <select
+                  className={style.field}
+                  name="List"
+                  value={selectedList}
+                  onChange={handleSelectList}
+                  required
+                >
+                  <option value="All" default>
+                    All employees
+                  </option>
+                  <option value="Employed">Active Employees</option>
+                  <option value="Former Employee">Former Employees</option>
+                  <option value="Candidate">Candidates</option>
+                </select>
+              </p>
               <p className={style.nr1}>User status</p>
               <p className={style.nr1}>Email addres</p>
               <p className={style.nr1}>User Type</p>
             </div>
-            {users.map((users, index) => (
+            {mapingList.map((users, index) => (
               <div
                 className={style.line}
                 key={users.id}

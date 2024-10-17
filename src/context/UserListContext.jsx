@@ -65,7 +65,7 @@ export function UserListWrapper(props) {
       console.log(err);
     }
   };
-  console.log(users);
+  // console.log(users);
 
   const fetchAllUsersFullNames = async () => {
     try {
@@ -161,6 +161,7 @@ export function UserListWrapper(props) {
     fetchUserComments,
     handleUserCommentMenu,
     userListCommentID,
+    setUserListCommentID,
     userCommentFieldOpen,
     handleUserCommentMenuClose,
     userCommentID,

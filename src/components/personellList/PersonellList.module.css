@@ -39,10 +39,18 @@
 
 .headerRow {
   display: flex;
+  align-content: center;
+  align-items: center;
   font-weight: bold;
   border-bottom: 2px solid rgba(0, 0, 0, 0.404);
   gap: 0.5rem;
   padding: 1rem;
+}
+.nr1AndSelect {
+  width: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 .nr1 {
   width: 200px;
@@ -192,4 +200,13 @@
   text-align: center;
   padding: 1rem;
   font-size: 2rem;
+}
+.field {
+  width: 150px;
+  padding: 0.2rem;
+  border: 1px solid #bdc3c7;
+  border-radius: 5px;
+  font-size: 14px;
+  transition: border-color 0.3s;
+  outline: none;
 }
