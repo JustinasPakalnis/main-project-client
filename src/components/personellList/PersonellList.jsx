@@ -29,6 +29,7 @@ const PersonellList = () => {
   }
   useEffect(() => {
     setMapingList(users);
+    console.log(users);
   }, []);
   useEffect(() => {
     selectedList === "All"
