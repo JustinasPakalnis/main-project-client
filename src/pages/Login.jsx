@@ -110,6 +110,7 @@ const Login = () => {
             />
           </div>
         </form>
+        <section className={style.space}></section>
       </section>
     </>
   );
