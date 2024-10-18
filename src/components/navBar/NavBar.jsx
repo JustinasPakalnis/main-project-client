@@ -2,7 +2,7 @@ import style from "./NavBar.module.css";
 import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { LoginContext } from "../../context/LoginContext.jsx";
-import { GlobalContext } from "../../context/GlobalContext";
+import { GlobalContext } from "../../context/GlobalContext.jsx";
 import { UserListContext } from "../../context/UserListContext.jsx";
 const NavBar = () => {
   const navigate = useNavigate();
@@ -113,11 +113,11 @@ const NavBar = () => {
         data-selected={selectedMenu === 6}
         className={style.navButton}
         onClick={() => {
-          navigate("/main/personell");
           fetchAllUsers();
           setSelectedMenu(6);
           handleTransferMenuClose();
           handleUpdateActiveOFF();
+          navigate("/main/personell");
         }}
       >
         Personell

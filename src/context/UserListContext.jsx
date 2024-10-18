@@ -51,9 +51,6 @@ export function UserListWrapper(props) {
   const handlefieldChange = (e) => {
     setUserComment(e.target.value);
   };
-  useEffect(function () {
-    fetchAllUsers();
-  }, []);
 
   const fetchAllUsers = async () => {
     try {
