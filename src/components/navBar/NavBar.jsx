@@ -1,12 +1,13 @@
 import style from "./NavBar.module.css";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { LoginContext } from "../../context/LoginContext.jsx";
 import { GlobalContext } from "../../context/GlobalContext.jsx";
 import { UserListContext } from "../../context/UserListContext.jsx";
+import { FaExclamationCircle } from "react-icons/fa";
 const NavBar = () => {
   const navigate = useNavigate();
-  const { darkTheme } = useContext(LoginContext);
+  const { authorizedUser } = useContext(LoginContext);
   const { fetchAllUsers } = useContext(UserListContext);
   const {
     handleInsertActive,
@@ -21,10 +22,23 @@ const NavBar = () => {
     setTransferClickID,
     handleTransferMenuClose,
     handleUpdateActiveOFF,
+    transferListData,
+    fetchTransferListData,
   } = useContext(GlobalContext);
 
+  const [myTransferCount, setTransferCount] = useState(0);
+  useEffect(() => {
+    setTransferCount(
+      transferListData.filter(
+        (transfer) =>
+          transfer.status === "pending" &&
+          authorizedUser.userID === transfer.to_user
+      ).length
+    );
+  }, [fetchTransferListData]);
+
   return (
-    <section className={style.navigationContainer} data-visible={darkTheme}>
+    <section className={style.navigationContainer}>
       <span className={style.navigationTitle}>Navigation</span>
 
       <button
@@ -90,11 +104,16 @@ const NavBar = () => {
           setSelectedMenu(4);
           handleTransferMenuClose();
           handleUpdateActiveOFF();
+          fetchTransferListData();
         }}
         className={style.navLink}
       >
         Pending transfers
+        <span className={style.count}>
+          {myTransferCount > 0 && <FaExclamationCircle />}
+        </span>
       </span>
+
       <span
         data-selected={selectedMenu === 5}
         onClick={() => {

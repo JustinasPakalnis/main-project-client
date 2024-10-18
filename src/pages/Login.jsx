@@ -45,6 +45,7 @@ const Login = () => {
               <li>Former Personnel ✔</li>
               <li>Active Personnel ✔</li>
               <li>Minor restyling ✔</li>
+              <li>Pending transfer notification ✔</li>
               <li>Extended Account Details (Currently in progress)</li>
               <li>Statistics Page</li>
               <li>Login Token to Maintain Session</li>

@@ -58,6 +58,7 @@ export function UserListWrapper(props) {
         "https://main-project-backend-xcez.onrender.com/users"
       );
       setUsers(res.data);
+      console.log("succes");
     } catch (err) {
       console.log(err);
     }
