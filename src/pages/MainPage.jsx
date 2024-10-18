@@ -20,8 +20,8 @@ const MainPage = () => {
   return (
     <>
       <section className={style.mainCotainer}>
-        <NavBar></NavBar>
         <UserListWrapper>
+          <NavBar></NavBar>
           <Routes>
             <Route path="/" element={<Navigate to="/main/fullinventory" />} />
             <Route path="/fullinventory" element={<FullInventoryList />} />
