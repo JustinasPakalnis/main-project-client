@@ -11,8 +11,8 @@ export const initialContext = {
   itemID: null,
   selectedMenu: 0,
   transfervisible: false,
-  transferListData: {},
   transferClickID: null,
+  transferListData: [],
   transferData: {
     itemID: null,
     fromUser: null,
@@ -326,6 +326,7 @@ export function ContextWrapper(props) {
     declineTransfer,
     transferClickID,
     setTransferClickID,
+    fetchTransferListData,
   };
   return (
     <GlobalContext.Provider value={value}>
