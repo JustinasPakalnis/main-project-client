@@ -87,7 +87,6 @@ export function ContextWrapper(props) {
     if (foundItem) {
       setItem(foundItem);
     }
-    fetchTransferListData();
   }, [itemID, items]);
   //Clear input field
   const handleFieldClear = () => {
@@ -171,9 +170,6 @@ export function ContextWrapper(props) {
     setUpdateActive(false);
     setinsertActive(false);
     handleFieldClear();
-  };
-  const getlist = () => {
-    fetchTransferListData();
   };
 
   const serverAPI = "https://main-project-server.onrender.com";
@@ -320,7 +316,6 @@ export function ContextWrapper(props) {
     handleTransferComment,
     transfervisible,
     handleTransferMenuClose,
-    getlist,
     transferListData,
     acceptTransfer,
     declineTransfer,
