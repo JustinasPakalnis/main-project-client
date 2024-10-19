@@ -20,25 +20,23 @@ const MainPage = () => {
   return (
     <>
       <section className={style.mainCotainer}>
-        <UserListWrapper>
-          <NavBar></NavBar>
-          <Routes>
-            <Route path="/" element={<Navigate to="/main/fullinventory" />} />
-            <Route path="/fullinventory" element={<FullInventoryList />} />
-            <Route path="/inventory/mylist" element={<MyInventoryList />} />
-            <Route path="/inventory/removed" element={<RemovedInventory />} />
-            <Route
-              path="/inventory/transfers"
-              element={<TransferList type="transfer" />}
-            />
-            <Route
-              path="/inventory/transfers/history"
-              element={<TransferHistoryList type="history" />}
-            />
-            <Route path="/personell" element={<PersonellList />} />
-            <Route path="/createNewUser" element={<RegistrationTemplate />} />
-          </Routes>
-        </UserListWrapper>
+        <NavBar></NavBar>
+        <Routes>
+          <Route path="/" element={<Navigate to="/main/fullinventory" />} />
+          <Route path="/fullinventory" element={<FullInventoryList />} />
+          <Route path="/inventory/mylist" element={<MyInventoryList />} />
+          <Route path="/inventory/removed" element={<RemovedInventory />} />
+          <Route
+            path="/inventory/transfers"
+            element={<TransferList type="transfer" />}
+          />
+          <Route
+            path="/inventory/transfers/history"
+            element={<TransferHistoryList type="history" />}
+          />
+          <Route path="/personell" element={<PersonellList />} />
+          <Route path="/createNewUser" element={<RegistrationTemplate />} />
+        </Routes>
       </section>
     </>
   );
