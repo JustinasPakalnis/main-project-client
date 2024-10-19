@@ -22,8 +22,7 @@ function App() {
               element={
                 <UserListWrapper>
                   <ContextWrapper>
-                    {/* <ProtectedRoute element={MainPage} /> */}
-                    <MainPage></MainPage>
+                    <ProtectedRoute element={MainPage} />
                   </ContextWrapper>
                 </UserListWrapper>
               }
