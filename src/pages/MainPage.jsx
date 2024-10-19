@@ -37,6 +37,7 @@ const MainPage = () => {
           <Route path="/personell" element={<PersonellList />} />
           <Route path="/createNewUser" element={<RegistrationTemplate />} />
         </Routes>
+        y
       </section>
     </>
   );

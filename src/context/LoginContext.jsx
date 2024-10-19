@@ -88,7 +88,7 @@ export function LoginWrapper(props) {
     }
   };
 
-  // console.log(authorizedUser);
+  console.log(isAuthenticated);
   const authorizedUserFullName = `${authorizedUser.firstName} ${authorizedUser.lastName}`;
 
   const value = {
