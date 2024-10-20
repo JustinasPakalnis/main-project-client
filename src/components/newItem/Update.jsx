@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { GlobalContext } from "../../context/GlobalContext";
 import AddUpdateTemplate from "./AddUpdateTemplate.jsx";
 import style from "./AddUpdate.module.css";
+import ButtonBig from "../buttons/ButtonBig.jsx";
 const Update = () => {
   const { item, updateActive, handleUpdateActiveOFF, handleUpdateClick } =
     useContext(GlobalContext);
@@ -13,15 +14,11 @@ const Update = () => {
       <h1>Update selected Item</h1>
       <AddUpdateTemplate />
       <div className={style.btnBlock}>
-        <button
-          className={style.updateButton}
+        <ButtonBig
           onClick={(e) => handleUpdateClick(e, item)}
-        >
-          UPDATE
-        </button>
-        <button className={style.updateButton} onClick={handleUpdateActiveOFF}>
-          CANCEL
-        </button>
+          text={"UPDATE"}
+        />
+        <ButtonBig onClick={handleUpdateActiveOFF} text={"CANCEL"} />
       </div>
     </div>
   );

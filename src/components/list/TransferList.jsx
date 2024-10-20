@@ -2,6 +2,7 @@ import { useContext } from "react";
 import style from "./General.module.css";
 import { GlobalContext } from "../../context/GlobalContext";
 import { LoginContext } from "../../context/LoginContext.jsx";
+import ButtonSmall from "../buttons/ButtonSmall.jsx";
 const TransferList = ({ type }) => {
   const { transferListData, acceptTransfer, declineTransfer } =
     useContext(GlobalContext);
@@ -42,18 +43,14 @@ const TransferList = ({ type }) => {
                       {item.transfer_date.split("T").join(" ").slice(0, 16)}
                     </p>
                     <p className={style.nr1}>{item.transfer_comment}</p>
-                    <button
-                      className={style.button}
+                    <ButtonSmall
                       onClick={(e) => acceptTransfer(e, item.item_id, item.id)}
-                    >
-                      Accept
-                    </button>
-                    <button
-                      className={style.button}
+                      text={"Accept"}
+                    />
+                    <ButtonSmall
                       onClick={(e) => declineTransfer(e, item.item_id, item.id)}
-                    >
-                      Decline
-                    </button>
+                      text={"Decline"}
+                    />
                   </li>
                 ) : null
               )}

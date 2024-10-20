@@ -15,6 +15,18 @@ export const initialContext = {
     firstName: "",
     lastName: "",
     email: "",
+    date_of_birth: "2024-10-01",
+    date_of_hire: "2024-10-01",
+    employment_type: "",
+    gender: "",
+    nationality: "",
+    notes: "",
+    phone: "",
+    position: "",
+    qualification: "",
+    salary: "",
+    supervisor_id: "",
+    work_location: "",
   },
   userComment: "",
   fetchAllUsers: () => {},
@@ -68,7 +80,6 @@ export function UserListWrapper(props) {
       console.log(err);
     }
   };
-  console.log(users);
 
   const fetchAllUsersFullNames = async () => {
     try {
@@ -80,8 +91,17 @@ export function UserListWrapper(props) {
   };
 
   const handleInputChange = (e) => {
-    setUserTemplate((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    const { name, value } = e.target;
+    const parsedValue =
+      name === "phone" || name === "salary" || name === "supervisor_id"
+        ? parseInt(value, 10)
+        : value;
+    setUserTemplate((prev) => ({ ...prev, [name]: parsedValue }));
   };
+  const handleRegistrationFormClear = (e) => {
+    setUserTemplate(initialContext.userTemplate);
+  };
+  console.log(userTemplate);
 
   const handleCreateUser = async (e) => {
     e.preventDefault();
@@ -159,6 +179,7 @@ export function UserListWrapper(props) {
     handleUserCommentMenuClose,
     userCommentID,
     fetchAllUsers,
+    handleRegistrationFormClear,
   };
   return (
     <UserListContext.Provider value={value}>

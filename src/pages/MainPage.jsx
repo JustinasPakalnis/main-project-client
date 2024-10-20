@@ -3,7 +3,7 @@ import { useContext } from "react";
 import { UserListWrapper } from "../context/UserListContext";
 import SecondaryHeader from "../components/secondaryHeader/SecondaryHeader.jsx";
 import NavBar from "../components/navBar/NavBar.jsx";
-import InventoryList from "../components/list/List.jsx";
+
 import MyInventoryList from "../components/list/MyInventoryList.jsx";
 import FullInventoryList from "../components/list/FullInventoryList.jsx";
 import TransferList from "../components/list/TransferList.jsx";
@@ -15,8 +15,6 @@ import { GlobalContext } from "../context/GlobalContext";
 import style from "./Main.module.css";
 import Header from "../components/header/Header.jsx";
 const MainPage = () => {
-  const { visibleItems, activeItems, transferItems, remowedItems } =
-    useContext(GlobalContext);
   return (
     <>
       <section className={style.mainCotainer}>

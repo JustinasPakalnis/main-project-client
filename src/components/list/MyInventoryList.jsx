@@ -6,6 +6,7 @@ import Transfer from "../newItem/Transfer.jsx";
 import { GlobalContext } from "../../context/GlobalContext.jsx";
 import { LoginContext } from "../../context/LoginContext.jsx";
 import { FaSearch } from "react-icons/fa";
+import ButtonSmall from "../buttons/ButtonSmall.jsx";
 const MyInventoryList = () => {
   const {
     items,
@@ -80,24 +81,18 @@ const MyInventoryList = () => {
                     <p className={style.nr7}>{item.createdate}</p>
                     <p className={style.nr8}>{item.comment}</p>
                     <div className={style.buttonBlock}>
-                      <button
-                        className={style.button}
+                      <ButtonSmall
                         onClick={() => handleUpdateActive(item.id)}
-                      >
-                        Update
-                      </button>
-                      <button
-                        className={`${style.button} ${style.btnDelete}`}
+                        text={"Update"}
+                      />
+                      <ButtonSmall
                         onClick={() => handleDelete(item.id)}
-                      >
-                        Delete
-                      </button>
-                      <button
-                        className={`${style.button} ${style.btnDelete}`}
+                        text={"Delete"}
+                      />
+                      <ButtonSmall
                         onClick={() => handleTransferMenuOpen(item.id, index)}
-                      >
-                        Transfer
-                      </button>
+                        text={"Transfer"}
+                      />
                     </div>
                   </li>
                 ) : null

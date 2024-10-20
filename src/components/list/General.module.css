@@ -107,18 +107,7 @@
   gap: 0.5rem;
   width: auto;
 }
-.button {
-  background-color: #f1e9e9;
-  border: none;
-  padding: 0.5rem;
-  cursor: pointer;
-  border-radius: 5px;
-  transition: 0.3s;
-}
-.button:hover {
-  transform: translateY(-2px);
-  text-decoration: underline;
-}
+
 .headerTitle {
   text-align: center;
   padding: 1rem;

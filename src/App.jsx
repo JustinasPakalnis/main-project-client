@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import List from "./components/list/List.jsx";
+
 import Header from "./components/header/Header.jsx";
 import Login from "./pages/Login";
 import { ContextWrapper } from "./context/GlobalContext";
