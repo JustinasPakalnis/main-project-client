@@ -1,8 +1,10 @@
 import { useContext, useEffect, useState } from "react";
+import profile1 from "../../assets/profile1.png";
 import { UserListContext } from "../../context/UserListContext";
 import { GlobalContext } from "../../context/GlobalContext";
 import { LoginContext } from "../../context/LoginContext";
 import style from "./PersonellList.module.css";
+import EmployeeDetails from "./EmployeeDetails.jsx";
 const PersonellList = () => {
   const {
     users,
@@ -17,24 +19,38 @@ const PersonellList = () => {
     userCommentID,
     userListCommentID,
     setUserListCommentID,
+    usersFullNames,
   } = useContext(UserListContext);
 
   const { authorizedUser } = useContext(LoginContext);
   const selectedUser = users.find((user) => user.id === userCommentID);
   const [selectedList, setSelectedList] = useState("All");
   const [mapingList, setMapingList] = useState(users);
+  const [selectedEmployee, setSelectedEmployee] = useState([]);
+
   function handleSelectList(e) {
     setUserListCommentID(null);
     setSelectedList(e.target.value);
   }
   useEffect(() => {
     setMapingList(users);
-  }, []);
+  }, [users]);
   useEffect(() => {
     selectedList === "All"
       ? setMapingList(users)
       : setMapingList(users.filter((user) => user.userstatus === selectedList));
   }, [selectedList]);
+
+  useEffect(() => {
+    setSelectedEmployee([users[0]]);
+  }, []);
+
+  function selectEmployee(id) {
+    const foundEmployee = users.find((employees) => employees.id === id);
+    if (foundEmployee) {
+      setSelectedEmployee([foundEmployee]);
+    }
+  }
 
   return (
     <>
@@ -101,9 +117,9 @@ const PersonellList = () => {
                   <option value="Candidate">Candidates</option>
                 </select>
               </p>
-              <p className={style.nr1}>User status</p>
-              <p className={style.nr1}>Email addres</p>
-              <p className={style.nr1}>User Type</p>
+              <p className={style.nr1}>Position</p>
+              <p className={style.nr8}>Email addres</p>
+              <p className={style.nr6}>Contact</p>
             </div>
             {mapingList.map((users, index) => (
               <div
@@ -121,9 +137,9 @@ const PersonellList = () => {
                   <p className={style.nr1}>
                     {users.firstName + " " + users.lastName}
                   </p>
-                  <p className={style.nr1}>{users.userstatus}</p>
-                  <p className={style.nr1}>{users.email}</p>
-                  <p className={style.nr1}>{users.type}</p>
+                  <p className={style.nr1}>{users.position}</p>
+                  <p className={style.nr8}>{users.email}</p>
+                  <p className={style.nr6}>{users.phone}</p>
                   <div className={style.buttons}>
                     {authorizedUser.firstName +
                       " " +
@@ -141,6 +157,12 @@ const PersonellList = () => {
                       className={style.button}
                     >
                       {userListCommentID === index ? "Close" : "Get"}
+                    </button>
+                    <button
+                      onClick={() => selectEmployee(users.id)}
+                      className={style.button}
+                    >
+                      More
                     </button>
                   </div>
                 </li>
@@ -162,6 +184,7 @@ const PersonellList = () => {
           </ul>
         </div>
       </section>
+      <EmployeeDetails selectedEmployee={selectedEmployee}></EmployeeDetails>
     </>
   );
 };
