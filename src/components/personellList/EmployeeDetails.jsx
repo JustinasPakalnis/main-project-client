@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import profile1 from "../../assets/profile1.png";
+import gandalf from "../../assets/gandalf.png";
 import { UserListContext } from "../../context/UserListContext";
 import { GlobalContext } from "../../context/GlobalContext";
 import { LoginContext } from "../../context/LoginContext";
@@ -10,12 +11,15 @@ const EmployeeDetails = ({ selectedEmployee }) => {
   const { usersFullNames } = useContext(UserListContext);
 
   return (
-    <section className={style.selectedEmplyeeDetails}>
+    <>
       {selectedEmployee.map((employee, index) => (
-        <>
-          <div key={employee.id} className={style.keyDetails}>
+        <section key={index} className={style.selectedEmplyeeDetails}>
+          <div className={style.keyDetails}>
             <div className={style.profilePic}>
-              <img src={profile1} alt="Userpic" />
+              <img
+                src={employee.id === 24 ? gandalf : profile1}
+                alt="Userpic"
+              />
             </div>
             <div className={style.title}>
               <h2 className={style.employeeName}>
@@ -81,12 +85,12 @@ const EmployeeDetails = ({ selectedEmployee }) => {
             </ul>
             <div className={style.notes}>
               <h2>Notes</h2>
-              <p>{employee.notes}</p>
+              <p>{employee.notes || "..."}</p>
             </div>
           </div>
-        </>
+        </section>
       ))}
-    </section>
+    </>
   );
 };
 

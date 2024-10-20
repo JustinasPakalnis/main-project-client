@@ -5,6 +5,8 @@ import { GlobalContext } from "../../context/GlobalContext";
 import { LoginContext } from "../../context/LoginContext";
 import style from "./PersonellList.module.css";
 import EmployeeDetails from "./EmployeeDetails.jsx";
+import EmployeeComments from "./EmployeeComments.jsx";
+import ButtonSmall from "../buttons/ButtonSmall.jsx";
 const PersonellList = () => {
   const {
     users,
@@ -141,44 +143,27 @@ const PersonellList = () => {
                   <p className={style.nr8}>{users.email}</p>
                   <p className={style.nr6}>{users.phone}</p>
                   <div className={style.buttons}>
-                    {authorizedUser.firstName +
-                      " " +
-                      authorizedUser.lastName !==
-                    users.firstName + " " + users.lastName ? (
-                      <button
+                    {authorizedUser.userID !== users.id ? (
+                      <ButtonSmall
                         onClick={() => handleUserCommentMenu(users.id)}
-                        className={style.button}
-                      >
-                        Comment
-                      </button>
+                        text={"Comment"}
+                      ></ButtonSmall>
                     ) : null}
-                    <button
+                    <ButtonSmall
                       onClick={() => fetchUserComments(users.id, index)}
-                      className={style.button}
-                    >
-                      {userListCommentID === index ? "Close" : "Get"}
-                    </button>
-                    <button
+                      text={userListCommentID === index ? "Close" : "Get"}
+                    ></ButtonSmall>
+                    <ButtonSmall
                       onClick={() => selectEmployee(users.id)}
-                      className={style.button}
-                    >
-                      More
-                    </button>
+                      text={"More"}
+                    ></ButtonSmall>
                   </div>
                 </li>
-                <div>
-                  {userComments.map((com) => (
-                    <div
-                      className={style.userComment}
-                      key={com.id}
-                      data-visible={userListCommentID === index}
-                    >
-                      <p>Commented by: {com.author}</p>
-                      <p>{com.commentDate.split("T").join(" ").slice(0, 16)}</p>
-                      <p>{com.comment}</p>
-                    </div>
-                  ))}
-                </div>
+                <EmployeeComments
+                  userComments={userComments}
+                  userListCommentID={userListCommentID}
+                  index={index}
+                ></EmployeeComments>
               </div>
             ))}
           </ul>

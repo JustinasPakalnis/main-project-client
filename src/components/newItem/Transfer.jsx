@@ -3,6 +3,7 @@ import { GlobalContext } from "../../context/GlobalContext";
 import { UserListContext } from "../../context/UserListContext";
 import { LoginContext } from "../../context/LoginContext";
 import style from "./AddUpdate.module.css";
+import ButtonBig from "../buttons/ButtonBig.jsx";
 const Transfer = () => {
   const {
     transferData,
@@ -52,16 +53,12 @@ const Transfer = () => {
           />
         </div>
         <div className={style.btnBlock}>
-          <button className={style.updateButton} type="submit">
-            Send
-          </button>
-          <button
-            className={style.updateButton}
-            type="button"
+          <ButtonBig type={"submit"} text={"Send"} />
+          <ButtonBig
+            type={"button"}
             onClick={handleTransferMenuClose}
-          >
-            Cancel
-          </button>
+            text={"Cancel"}
+          />
         </div>
       </form>
     </>
