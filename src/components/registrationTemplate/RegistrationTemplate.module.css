@@ -57,7 +57,7 @@
   width: 100%;
 }
 
-button {
+/* button {
   padding: 0.7rem 1.5rem;
   border-radius: 5px;
   border: none;
@@ -68,4 +68,4 @@ button {
 button:hover {
   background-color: #007bff;
   color: white;
-}
+} */
