@@ -62,7 +62,7 @@ export function UserListWrapper(props) {
 
   const fetchAllUsers = async () => {
     try {
-      const res = await axios.get(serverAPI + "/users");
+      const res = await axios.get(serverAPI + "/employeelist ");
       setUsers(res.data);
     } catch (err) {
       console.log(err);
@@ -72,7 +72,7 @@ export function UserListWrapper(props) {
 
   const fetchAllUsersFullNames = async () => {
     try {
-      const res = await axios.get(serverAPI + "/usersFullNames");
+      const res = await axios.get(serverAPI + "/employees/fullnames");
       setUsersFullNames(res.data);
     } catch (err) {
       console.log(err);
@@ -86,7 +86,7 @@ export function UserListWrapper(props) {
   const handleCreateUser = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(serverAPI + "/users", userTemplate);
+      await axios.post(serverAPI + "/employee/registration", userTemplate);
       fetchAllUsers();
       setUserTemplate(initialContext.userTemplate);
     } catch (err) {
@@ -101,7 +101,7 @@ export function UserListWrapper(props) {
   ) => {
     e.preventDefault();
     try {
-      await axios.post(`${serverAPI}/users/comment`, {
+      await axios.post(`${serverAPI}/employee/comment`, {
         comment,
         userCommentID,
         authorizedUser,
@@ -116,7 +116,7 @@ export function UserListWrapper(props) {
 
   const fetchUserComments = async (id, index) => {
     try {
-      const res = await axios.get(`${serverAPI}/usercomments/${id}`);
+      const res = await axios.get(`${serverAPI}/employee/comments/${id}`);
       setUserComments(res.data);
       setUserCommentFieldOpen(false);
       setUserListCommentID(userListCommentID === index ? null : index);
