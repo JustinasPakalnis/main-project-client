@@ -52,41 +52,36 @@ export function UserListWrapper(props) {
     setUserComment(e.target.value);
   };
 
-  const fetchAllUsers = async () => {
-    try {
-      const res = await axios.get(
-        "https://main-project-backend-xcez.onrender.com/users"
-      );
-      setUsers(res.data);
-      console.log("succes");
-    } catch (err) {
-      console.log(err);
-    }
-  };
-  // console.log(users);
-
-  const fetchAllUsersFullNames = async () => {
-    try {
-      const res = await axios.get(
-        "https://main-project-backend-xcez.onrender.com/usersFullNames"
-      );
-      setUsersFullNames(res.data);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
   useEffect(function () {
     fetchAllUsers();
     fetchAllUsersFullNames();
     setUserTemplate(initialContext.userTemplate);
   }, []);
 
+  const serverAPI = "https://main-project-server.onrender.com";
+
+  const fetchAllUsers = async () => {
+    try {
+      const res = await axios.get(serverAPI + "/users");
+      setUsers(res.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  console.log(users);
+
+  const fetchAllUsersFullNames = async () => {
+    try {
+      const res = await axios.get(serverAPI + "/usersFullNames");
+      setUsersFullNames(res.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   const handleInputChange = (e) => {
     setUserTemplate((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
-
-  const serverAPI = "https://main-project-server.onrender.com";
 
   const handleCreateUser = async (e) => {
     e.preventDefault();
