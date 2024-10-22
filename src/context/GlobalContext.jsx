@@ -8,8 +8,10 @@ export const initialContext = {
   itemID: null,
   selectedMenu: 0,
   transfervisible: false,
+  createUpadateNotification: false,
   transferClickID: null,
   transferListData: [],
+  notificationPrompt: "Succes",
   transferData: {
     itemID: null,
     fromUser: null,
@@ -66,6 +68,12 @@ export function ContextWrapper(props) {
   const [transferClickID, setTransferClickID] = useState(
     initialContext.transferClickID
   );
+  const [createUpadateNotification, setCreateUpadateNotification] = useState(
+    initialContext.createUpadateNotification
+  );
+  const [notificationPrompt, setNotificationPrompt] = useState(
+    initialContext.notificationPrompt
+  );
   // console.log(items);
 
   // ITEM array is filled with data ant first page opening
@@ -88,6 +96,14 @@ export function ContextWrapper(props) {
   const handleInputChange = (e) => {
     setItem((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
+
+  const handleCreateUpadateNotification = () => {
+    setCreateUpadateNotification(true);
+    setTimeout(() => {
+      setCreateUpadateNotification(false);
+    }, 2000);
+  };
+
   const handleTransferComment = (e) => {
     setTransferData((prev) => ({
       ...prev,
@@ -187,6 +203,8 @@ export function ContextWrapper(props) {
   const handleDelete = async (id) => {
     try {
       await axios.put(`${serverAPI}/inventory/delete/${id}`);
+      setNotificationPrompt("Item has been removed");
+      handleCreateUpadateNotification();
       fetchAllItems();
     } catch (err) {
       console.log(err);
@@ -203,6 +221,8 @@ export function ContextWrapper(props) {
       fetchAllItems();
       handleUpdateActiveOFF();
       handleFieldClear();
+      setNotificationPrompt("Item has been updated");
+      handleCreateUpadateNotification();
     } catch (err) {
       console.log(err);
     }
@@ -213,7 +233,8 @@ export function ContextWrapper(props) {
     // handleFieldClear();
     try {
       await axios.post(serverAPI + "/inventory", item);
-
+      setNotificationPrompt("Item has been created");
+      handleCreateUpadateNotification();
       fetchAllItems();
     } catch (err) {
       console.log(err);
@@ -227,6 +248,8 @@ export function ContextWrapper(props) {
       await axios.post(serverAPI + "/inventory/transfer", transferData);
       handleTransferMenuClose();
       fetchAllItems();
+      setNotificationPrompt("Transfer has been created");
+      handleCreateUpadateNotification();
     } catch (err) {
       console.log(err);
       setError(true);
@@ -240,6 +263,8 @@ export function ContextWrapper(props) {
         `${serverAPI}/inventory/transfer/accept/${itemId}/${transferId}`,
         authorizedUser
       );
+      setNotificationPrompt("Transfer has been accepted!");
+      handleCreateUpadateNotification();
       fetchTransferListData();
       fetchAllItems();
     } catch (err) {
@@ -253,6 +278,8 @@ export function ContextWrapper(props) {
       await axios.put(
         `${serverAPI}/inventory/transfer/decline/${itemId}/${transferId}`
       );
+      setNotificationPrompt("Transfer has been declined!");
+      handleCreateUpadateNotification();
       fetchTransferListData();
       fetchAllItems();
     } catch (err) {
@@ -298,6 +325,8 @@ export function ContextWrapper(props) {
     transferClickID,
     setTransferClickID,
     fetchTransferListData,
+    createUpadateNotification,
+    notificationPrompt,
   };
   return (
     <GlobalContext.Provider value={value}>

@@ -47,6 +47,7 @@ const Login = () => {
               <li>Minor restyling ✔</li>
               <li>Pending transfer notification ✔</li>
               <li>Extended Account Details ✔</li>
+              <li>Registration form updates ✔</li>
               <li>Statistics Page</li>
               <li>Login Token to Maintain Session</li>
               <li>User Role-Based Interface</li>

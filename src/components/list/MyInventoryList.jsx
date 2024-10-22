@@ -3,6 +3,7 @@ import style from "./General.module.css";
 import Add from "../newItem/Add.jsx";
 import Update from "../newItem/Update.jsx";
 import Transfer from "../newItem/Transfer.jsx";
+import Notification from "./Notification.jsx";
 import { GlobalContext } from "../../context/GlobalContext.jsx";
 import { LoginContext } from "../../context/LoginContext.jsx";
 import { FaSearch } from "react-icons/fa";
@@ -14,6 +15,7 @@ const MyInventoryList = () => {
     handleUpdateActive,
     handleTransferMenuOpen,
     transferClickID,
+    notificationPrompt,
   } = useContext(GlobalContext);
   const { authorizedUserFullName } = useContext(LoginContext);
 
@@ -34,6 +36,7 @@ const MyInventoryList = () => {
   return (
     <>
       <div className={style.mainListContainer}>
+        <Notification text={notificationPrompt}></Notification>
         <h1 className={style.headerTitle}>My items</h1>
         <Transfer></Transfer>
         <Update></Update>

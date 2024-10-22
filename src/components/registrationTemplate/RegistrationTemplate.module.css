@@ -74,12 +74,10 @@ textarea {
   height: 12.5rem;
   resize: vertical;
 }
-.message {
-  display: none;
-}
 
-.message[data-lightbox="true"] {
-  display: block;
+.message {
+  visibility: hidden;
+  opacity: 0;
   background-color: rgb(255, 255, 255);
   padding: 2.5rem;
   border-radius: 1.5rem;
@@ -89,9 +87,14 @@ textarea {
   left: 50%;
   transform: translate(-50%, -50%);
   border: 2px solid rgba(132, 156, 235, 0.5);
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
 }
 
-.message[data-lightbox="true"] h2 {
+.message[data-lightbox="true"] {
+  visibility: visible;
+  opacity: 1;
+}
+.message h2 {
   font-size: 1.75rem;
   margin-bottom: 1rem;
   color: rgb(132, 156, 235);

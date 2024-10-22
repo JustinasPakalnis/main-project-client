@@ -1,6 +1,7 @@
 import { useContext, useState, useEffect } from "react";
 import style from "./General.module.css";
 import Add from "../newItem/Add.jsx";
+import Notification from "./Notification.jsx";
 import { GlobalContext } from "../../context/GlobalContext";
 import { LoginContext } from "../../context/LoginContext.jsx";
 import { FaSearch } from "react-icons/fa";
@@ -30,6 +31,7 @@ const FullInventoryList = () => {
   return (
     <>
       <div className={style.mainListContainer}>
+        <Notification text="Item has been created"></Notification>
         <Add></Add>
         <div className={style.listContainer}>
           <div className={style.searchBox}>
