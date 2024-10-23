@@ -1,53 +1,31 @@
 .registrationForm {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 1200px;
-  gap: 15px;
-  padding: 20px;
-  width: 600px;
+  gap: 1rem;
   padding: 1rem;
   border-radius: 1rem;
   margin: 1rem;
   transition: 0.1s;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+.profilePic {
+  width: 150px;
+  height: 150px;
+  border: 0.4rem solid rgb(132, 156, 235);
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profilePic img {
+  width: 160px;
+  height: 160px;
+  object-fit: cover;
 }
 .registrationForm:hover {
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
-}
-.title {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-}
-
-.formGrid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1rem;
-  width: 100%;
-}
-
-.formGroup {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-}
-
-.label {
-  margin-bottom: 0.5rem;
-  font-weight: bold;
-}
-
-.field {
-  padding: 0.5rem;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  transition: border-color 0.3s;
-}
-
-.field:focus {
-  border-color: #007bff;
 }
 
 .buttonContainer {
@@ -56,16 +34,68 @@
   margin-top: 1rem;
   width: 100%;
 }
-
-/* button {
-  padding: 0.7rem 1.5rem;
-  border-radius: 5px;
-  border: none;
-  cursor: pointer;
-  transition: background-color 0.3s;
+.formMain {
+  width: 100%;
+  display: flex;
+  gap: 4rem;
+  justify-content: space-between;
+}
+.formGroup {
+  display: flex;
+  flex-direction: column;
 }
 
-button:hover {
-  background-color: #007bff;
-  color: white;
-} */
+.label {
+  font-weight: bold;
+  color: grey;
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+}
+
+.field {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  width: 250px;
+  transition: border-color 0.3s;
+}
+
+.field:focus {
+  border-color: rgb(132, 156, 235);
+  outline: none;
+}
+
+.sectionTitle {
+  margin-bottom: 0.5rem;
+  color: rgb(132, 156, 235);
+}
+
+textarea {
+  height: 12.5rem;
+  resize: vertical;
+}
+
+.message {
+  visibility: hidden;
+  opacity: 0;
+  background-color: rgb(255, 255, 255);
+  padding: 2.5rem;
+  border-radius: 1.5rem;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 2px solid rgba(132, 156, 235, 0.5);
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+.message[data-lightbox="true"] {
+  visibility: visible;
+  opacity: 1;
+}
+.message h2 {
+  font-size: 1.75rem;
+  margin-bottom: 1rem;
+  color: rgb(132, 156, 235);
+}

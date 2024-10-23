@@ -7,6 +7,7 @@ export const initialContext = {
   usersFullNames: [],
   userComments: [],
   userCommentFieldOpen: false,
+  registrationSucces: false,
   userListCommentID: null,
   userTemplate: {
     userstatus: "",
@@ -59,9 +60,18 @@ export function UserListWrapper(props) {
   const [userListCommentID, setUserListCommentID] = useState(
     initialContext.userListCommentID
   );
+  const [registrationSucces, setRegistrationSucces] = useState(
+    initialContext.registrationSucces
+  );
 
   const handlefieldChange = (e) => {
     setUserComment(e.target.value);
+  };
+  const handleRegistrationSucces = () => {
+    setRegistrationSucces(true);
+    setTimeout(() => {
+      setRegistrationSucces(false);
+    }, 5000);
   };
 
   useEffect(function () {
@@ -101,7 +111,7 @@ export function UserListWrapper(props) {
   const handleRegistrationFormClear = (e) => {
     setUserTemplate(initialContext.userTemplate);
   };
-  console.log(userTemplate);
+  // console.log(userTemplate);
 
   const handleCreateUser = async (e) => {
     e.preventDefault();
@@ -109,6 +119,7 @@ export function UserListWrapper(props) {
       await axios.post(serverAPI + "/employee/registration", userTemplate);
       fetchAllUsers();
       setUserTemplate(initialContext.userTemplate);
+      handleRegistrationSucces();
     } catch (err) {
       console.log(err);
     }
@@ -144,7 +155,6 @@ export function UserListWrapper(props) {
       console.log(err);
     }
   };
-  // console.log(userListCommentID);
 
   const handleUserCommentMenu = (userCommentID) => {
     setUserCommentID(userCommentID);
@@ -180,6 +190,8 @@ export function UserListWrapper(props) {
     userCommentID,
     fetchAllUsers,
     handleRegistrationFormClear,
+    registrationSucces,
+    handleRegistrationSucces,
   };
   return (
     <UserListContext.Provider value={value}>

@@ -2,16 +2,22 @@ import { useContext } from "react";
 import style from "./General.module.css";
 import { GlobalContext } from "../../context/GlobalContext";
 import { LoginContext } from "../../context/LoginContext.jsx";
+import Notification from "./Notification.jsx";
 import ButtonSmall from "../buttons/ButtonSmall.jsx";
 const TransferList = ({ type }) => {
-  const { transferListData, acceptTransfer, declineTransfer } =
-    useContext(GlobalContext);
+  const {
+    transferListData,
+    acceptTransfer,
+    declineTransfer,
+    notificationPrompt,
+  } = useContext(GlobalContext);
   const { authorizedUser } = useContext(LoginContext);
 
   let displayedIndex = 0;
   return (
     <>
       <div className={style.mainListContainer}>
+        <Notification text={notificationPrompt}></Notification>
         <h1 className={style.headerTitle}>Your pending transfers</h1>
         <div className={style.listContainer}>
           <div className={style.itemListContainer}>
