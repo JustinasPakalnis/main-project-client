@@ -1,0 +1,115 @@
+.mainListContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.listContainer {
+  display: flex;
+  flex-direction: column;
+  width: auto;
+  padding: 1rem;
+  border-radius: 1rem;
+  margin: 1rem;
+  transition: 0.1s;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.listContainer:hover {
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+}
+.formField {
+  padding: 8px;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #f3f3f3;
+  transition: 0.3s;
+}
+.formField:focus {
+  border-color: #007bff;
+  background-color: #fff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  outline: none;
+}
+.searchBox {
+  position: relative;
+  padding: 0.5rem;
+}
+.searchBtn {
+  height: 1.5rem;
+  width: 1.5rem;
+  color: #00000063;
+  position: absolute;
+  left: 190px;
+  top: 13px;
+}
+.searchBtn:hover {
+  cursor: pointer;
+}
+
+.itemListContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.headerRow {
+  display: flex;
+  font-weight: bold;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.404);
+  gap: 0.5rem;
+  padding: 1rem;
+}
+.nr1 {
+  width: 200px;
+}
+.nr2 {
+  width: 150px;
+}
+.nr3 {
+  width: 80px;
+}
+.nr4 {
+  width: 80px;
+}
+.nr5 {
+  width: 80px;
+}
+.nr6 {
+  width: 100px;
+}
+.nr7 {
+  width: 100px;
+}
+.nr8 {
+  width: 250px;
+}
+.listItem {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem;
+  border-radius: 10px;
+  transition: background-color 0.3s ease;
+  height: 3rem;
+}
+
+.listItem2 {
+  background-color: #f9f9f9;
+}
+.listItem:hover {
+  background-color: #e2cccc;
+}
+.listItem[data-checkedtransfer="true"] {
+  background-color: #8b76769c;
+}
+.buttonBlock {
+  display: flex;
+  gap: 0.5rem;
+  width: auto;
+}
+
+.headerTitle {
+  text-align: center;
+  padding: 1rem;
+  font-size: 2rem;
+}

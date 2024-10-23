@@ -3,16 +3,13 @@ import { LoginContext } from "./LoginContext";
 import axios from "axios";
 export const initialContext = {
   items: [],
-  activeItems: [],
-  transferItems: [],
-  remowedItems: [],
   insertActive: false,
   updateActive: false,
   itemID: null,
   selectedMenu: 0,
   transfervisible: false,
-  transferListData: {},
   transferClickID: null,
+  transferListData: [],
   transferData: {
     itemID: null,
     fromUser: null,
@@ -58,12 +55,6 @@ export function ContextWrapper(props) {
   const [insertActive, setinsertActive] = useState(initialContext.insertActive);
   const [updateActive, setUpdateActive] = useState(initialContext.updateActive);
   const [itemID, setitemID] = useState(initialContext.itemID);
-  const [activeItems, setActiveItems] = useState(initialContext.activeItems);
-  const [transferItems, setTransferItems] = useState(
-    initialContext.transferItems
-  );
-  const [remowedItems, setRemowedItems] = useState(initialContext.remowedItems);
-  const [visibleItems, setVisibleItems] = useState(items);
   const [selectedMenu, setSelectedMenu] = useState(initialContext.selectedMenu);
   const [transferData, setTransferData] = useState(initialContext.transferData);
   const [transfervisible, setTransfervisible] = useState(
@@ -85,11 +76,8 @@ export function ContextWrapper(props) {
   useEffect(() => {
     const foundItem = items.find((s) => s.id === itemID);
     if (foundItem) {
-      console.log(foundItem);
-
       setItem(foundItem);
     }
-    fetchTransferListData();
   }, [itemID, items]);
   //Clear input field
   const handleFieldClear = () => {
@@ -101,8 +89,6 @@ export function ContextWrapper(props) {
     setItem((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
   const handleTransferComment = (e) => {
-    console.log(e);
-
     setTransferData((prev) => ({
       ...prev,
       [e.target.name]: e.target.value,
@@ -175,9 +161,6 @@ export function ContextWrapper(props) {
     setUpdateActive(false);
     setinsertActive(false);
     handleFieldClear();
-  };
-  const getlist = () => {
-    fetchTransferListData();
   };
 
   const serverAPI = "https://main-project-server.onrender.com";
@@ -278,17 +261,6 @@ export function ContextWrapper(props) {
     }
   };
 
-  // ITEM filters array is filled with data ant first page opening
-  useEffect(
-    function () {
-      setActiveItems(items.filter((item) => item.status === "Active"));
-      setRemowedItems(items.filter((item) => item.status === "Removed"));
-      setTransferItems(items.filter((item) => item.status === "Transfer"));
-      setVisibleItems(items); // Show all items by defaul
-    },
-    [items]
-  );
-
   const value = {
     items,
     item,
@@ -309,10 +281,6 @@ export function ContextWrapper(props) {
     handleActiveItems,
     handleRemowedItems,
     handleTranfsersItems,
-    visibleItems,
-    activeItems,
-    transferItems,
-    remowedItems,
     selectedMenu,
     setSelectedMenu,
     setinsertActive,
@@ -324,12 +292,12 @@ export function ContextWrapper(props) {
     handleTransferComment,
     transfervisible,
     handleTransferMenuClose,
-    getlist,
     transferListData,
     acceptTransfer,
     declineTransfer,
     transferClickID,
     setTransferClickID,
+    fetchTransferListData,
   };
   return (
     <GlobalContext.Provider value={value}>

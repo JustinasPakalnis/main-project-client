@@ -88,7 +88,7 @@ export function LoginWrapper(props) {
     }
   };
 
-  // console.log(authorizedUser);
+  const authorizedUserFullName = `${authorizedUser.firstName} ${authorizedUser.lastName}`;
 
   const value = {
     isAuthenticated,
@@ -101,6 +101,7 @@ export function LoginWrapper(props) {
     loginMessage,
     handleLoginMessage,
     handleLogOut,
+    authorizedUserFullName,
   };
   return (
     <LoginContext.Provider value={value}>

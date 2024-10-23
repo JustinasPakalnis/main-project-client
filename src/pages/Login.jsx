@@ -42,13 +42,15 @@ const Login = () => {
           <div className={style.pendingFeatures}>
             <h3>Pending Features</h3>
             <ul>
-              <li>Former Personnel</li>
-              <li>Active Personnel</li>
+              <li>Former Personnel ✔</li>
+              <li>Active Personnel ✔</li>
+              <li>Minor restyling ✔</li>
+              <li>Pending transfer notification ✔</li>
+              <li>Extended Account Details ✔</li>
               <li>Statistics Page</li>
-              <li>Major Restyling</li>
               <li>Login Token to Maintain Session</li>
               <li>User Role-Based Interface</li>
-              <li>Extended Account Details</li>
+              <li>Major Restyling</li>
               <li>Project management section?Maybe???</li>
             </ul>
           </div>
@@ -110,6 +112,7 @@ const Login = () => {
             />
           </div>
         </form>
+        <section className={style.space}></section>
       </section>
     </>
   );

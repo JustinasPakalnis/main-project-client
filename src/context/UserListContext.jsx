@@ -15,6 +15,18 @@ export const initialContext = {
     firstName: "",
     lastName: "",
     email: "",
+    date_of_birth: "2024-10-01",
+    date_of_hire: "2024-10-01",
+    employment_type: "",
+    gender: "",
+    nationality: "",
+    notes: "",
+    phone: "",
+    position: "",
+    qualification: "",
+    salary: "",
+    supervisor_id: "",
+    work_location: "",
   },
   userComment: "",
   fetchAllUsers: () => {},
@@ -52,11 +64,17 @@ export function UserListWrapper(props) {
     setUserComment(e.target.value);
   };
 
+  useEffect(function () {
+    fetchAllUsers();
+    fetchAllUsersFullNames();
+    setUserTemplate(initialContext.userTemplate);
+  }, []);
+
+  const serverAPI = "https://main-project-server.onrender.com";
+
   const fetchAllUsers = async () => {
     try {
-      const res = await axios.get(
-        "https://main-project-backend-xcez.onrender.com/users"
-      );
+      const res = await axios.get(serverAPI + "/employeelist ");
       setUsers(res.data);
     } catch (err) {
       console.log(err);
@@ -65,36 +83,30 @@ export function UserListWrapper(props) {
 
   const fetchAllUsersFullNames = async () => {
     try {
-      const res = await axios.get(
-        "https://main-project-backend-xcez.onrender.com/usersFullNames"
-      );
+      const res = await axios.get(serverAPI + "/employees/fullnames");
       setUsersFullNames(res.data);
     } catch (err) {
       console.log(err);
     }
   };
 
-  useEffect(function () {
-    fetchAllUsers();
-    fetchAllUsersFullNames();
-    setUserTemplate(initialContext.userTemplate);
-  }, []);
-  // console.log(usersFullNames);
-
-  // useEffect(function () {
-  //   setUserTemplate(initialContext.userTemplate);
-  // }, []);
-
   const handleInputChange = (e) => {
-    setUserTemplate((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    const { name, value } = e.target;
+    const parsedValue =
+      name === "phone" || name === "salary" || name === "supervisor_id"
+        ? parseInt(value, 10)
+        : value;
+    setUserTemplate((prev) => ({ ...prev, [name]: parsedValue }));
   };
-
-  const serverAPI = "https://main-project-server.onrender.com";
+  const handleRegistrationFormClear = (e) => {
+    setUserTemplate(initialContext.userTemplate);
+  };
+  console.log(userTemplate);
 
   const handleCreateUser = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(serverAPI + "/users", userTemplate);
+      await axios.post(serverAPI + "/employee/registration", userTemplate);
       fetchAllUsers();
       setUserTemplate(initialContext.userTemplate);
     } catch (err) {
@@ -109,7 +121,7 @@ export function UserListWrapper(props) {
   ) => {
     e.preventDefault();
     try {
-      await axios.post(`${serverAPI}/users/comment`, {
+      await axios.post(`${serverAPI}/employee/comment`, {
         comment,
         userCommentID,
         authorizedUser,
@@ -124,7 +136,7 @@ export function UserListWrapper(props) {
 
   const fetchUserComments = async (id, index) => {
     try {
-      const res = await axios.get(`${serverAPI}/usercomments/${id}`);
+      const res = await axios.get(`${serverAPI}/employee/comments/${id}`);
       setUserComments(res.data);
       setUserCommentFieldOpen(false);
       setUserListCommentID(userListCommentID === index ? null : index);
@@ -162,9 +174,12 @@ export function UserListWrapper(props) {
     fetchUserComments,
     handleUserCommentMenu,
     userListCommentID,
+    setUserListCommentID,
     userCommentFieldOpen,
     handleUserCommentMenuClose,
     userCommentID,
+    fetchAllUsers,
+    handleRegistrationFormClear,
   };
   return (
     <UserListContext.Provider value={value}>

@@ -1,11 +1,14 @@
 import style from "./NavBar.module.css";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { LoginContext } from "../../context/LoginContext.jsx";
-import { GlobalContext } from "../../context/GlobalContext";
+import { GlobalContext } from "../../context/GlobalContext.jsx";
+import { UserListContext } from "../../context/UserListContext.jsx";
+import { FaExclamationCircle } from "react-icons/fa";
 const NavBar = () => {
   const navigate = useNavigate();
-  const { darkTheme } = useContext(LoginContext);
+  const { authorizedUser } = useContext(LoginContext);
+  const { fetchAllUsers } = useContext(UserListContext);
   const {
     handleInsertActive,
     fetchAllItems,
@@ -19,17 +22,30 @@ const NavBar = () => {
     setTransferClickID,
     handleTransferMenuClose,
     handleUpdateActiveOFF,
+    transferListData,
+    fetchTransferListData,
   } = useContext(GlobalContext);
 
+  const [myTransferCount, setTransferCount] = useState(0);
+  useEffect(() => {
+    setTransferCount(
+      transferListData.filter(
+        (transfer) =>
+          transfer.status === "pending" &&
+          authorizedUser.userID === transfer.to_user
+      ).length
+    );
+  }, [fetchTransferListData]);
+
   return (
-    <section className={style.navigationContainer} data-visible={darkTheme}>
+    <section className={style.navigationContainer}>
       <span className={style.navigationTitle}>Navigation</span>
 
       <button
         className={style.navButton}
         data-selected={selectedMenu === 1}
         onClick={() => {
-          navigate("/main/Inventory");
+          navigate("/main/fullinventory");
           fetchAllItems();
           setSelectedMenu(1);
           setinsertActive(false);
@@ -41,7 +57,7 @@ const NavBar = () => {
       </button>
       <span
         onClick={() => {
-          navigate("/main/Inventory");
+          navigate("/main/fullinventory");
           handleInsertActive();
           handleTransferMenuClose();
           handleUpdateActiveOFF();
@@ -57,7 +73,7 @@ const NavBar = () => {
       <span
         data-selected={selectedMenu === 2}
         onClick={() => {
-          navigate("/main/Inventory/active");
+          navigate("/main/inventory/mylist");
           handleActiveItems();
           setSelectedMenu(2);
           handleTransferMenuClose();
@@ -65,12 +81,12 @@ const NavBar = () => {
         }}
         className={style.navLink}
       >
-        Active items
+        My items
       </span>
       <span
         data-selected={selectedMenu === 3}
         onClick={() => {
-          navigate("/main/Inventory/removed");
+          navigate("/main/inventory/removed");
           handleRemowedItems();
           setSelectedMenu(3);
           handleTransferMenuClose();
@@ -83,20 +99,25 @@ const NavBar = () => {
       <span
         data-selected={selectedMenu === 4}
         onClick={() => {
-          navigate("/main/Inventory/transfers");
+          navigate("/main/inventory/transfers");
           handleTranfsersItems();
           setSelectedMenu(4);
           handleTransferMenuClose();
           handleUpdateActiveOFF();
+          fetchTransferListData();
         }}
         className={style.navLink}
       >
         Pending transfers
+        <span className={style.count}>
+          {myTransferCount > 0 && <FaExclamationCircle />}
+        </span>
       </span>
+
       <span
         data-selected={selectedMenu === 5}
         onClick={() => {
-          navigate("/main/Inventory/transfers/history");
+          navigate("/main/inventory/transfers/history");
           handleTranfsersItems();
           setSelectedMenu(5);
           handleTransferMenuClose();
@@ -108,31 +129,30 @@ const NavBar = () => {
       </span>
 
       <button
-        data-selected={selectedMenu === 5}
+        data-selected={selectedMenu === 6}
         className={style.navButton}
         onClick={() => {
-          navigate("/main/Personell");
-          setSelectedMenu(5);
+          fetchAllUsers();
+          setSelectedMenu(6);
           handleTransferMenuClose();
           handleUpdateActiveOFF();
+          navigate("/main/personell");
         }}
       >
         Personell
       </button>
       <span
-        data-selected={selectedMenu === 6}
+        data-selected={selectedMenu === 7}
         className={style.navLink}
         onClick={() => {
-          navigate("/main/createNewUser");
-          setSelectedMenu(6);
+          navigate("/main/createnewuser");
+          setSelectedMenu(7);
           handleTransferMenuClose();
           handleUpdateActiveOFF();
         }}
       >
         Create new USER
       </span>
-      <span className={style.navLink}>Active personnel(future)</span>
-      <span className={style.navLink}>Former personnel(future)</span>
     </section>
   );
 };

@@ -6,11 +6,15 @@
   padding: 15px;
   width: 250px;
   height: 28rem;
-  border-radius: 0 0 1rem 1rem;
+  border-radius: 0 0 1rem 0;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   transition: 0.3s;
+  position: sticky;
+  top: 80px;
+  z-index: 1;
 }
 .navigationContainer:hover {
-  background-color: #e0b6b638; /* Light background on hover */
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
 }
 .navigationTitle {
   font-size: 1.5em;
@@ -40,6 +44,7 @@
 
   cursor: pointer;
   color: #333;
+  position: relative;
 }
 .navLink[data-selected="true"] {
   text-decoration: underline;
@@ -47,4 +52,14 @@
 .navLink:hover {
   color: #007bff;
   text-decoration: underline;
+}
+.count {
+  position: absolute;
+  top: 0;
+  right: 15;
+  color: red;
+}
+.count svg {
+  height: 0.7rem;
+  width: 0.7rem;
 }

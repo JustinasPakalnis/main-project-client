@@ -1,8 +1,12 @@
 import { useContext, useEffect, useState } from "react";
+import profile1 from "../../assets/profile1.png";
 import { UserListContext } from "../../context/UserListContext";
 import { GlobalContext } from "../../context/GlobalContext";
 import { LoginContext } from "../../context/LoginContext";
 import style from "./PersonellList.module.css";
+import EmployeeDetails from "./EmployeeDetails.jsx";
+import EmployeeComments from "./EmployeeComments.jsx";
+import ButtonSmall from "../buttons/ButtonSmall.jsx";
 const PersonellList = () => {
   const {
     users,
@@ -16,19 +20,48 @@ const PersonellList = () => {
     handleUserCommentMenuClose,
     userCommentID,
     userListCommentID,
+    setUserListCommentID,
+    usersFullNames,
   } = useContext(UserListContext);
-  console.log(userListCommentID);
 
   const { authorizedUser } = useContext(LoginContext);
   const selectedUser = users.find((user) => user.id === userCommentID);
+  const [selectedList, setSelectedList] = useState("All");
+  const [mapingList, setMapingList] = useState(users);
+  const [selectedEmployee, setSelectedEmployee] = useState([]);
+
+  function handleSelectList(e) {
+    setUserListCommentID(null);
+    setSelectedList(e.target.value);
+  }
+  useEffect(() => {
+    setMapingList(users);
+  }, [users]);
+  useEffect(() => {
+    selectedList === "All"
+      ? setMapingList(users)
+      : setMapingList(users.filter((user) => user.userstatus === selectedList));
+  }, [selectedList]);
+
+  useEffect(() => {
+    setSelectedEmployee([users[0]]);
+  }, []);
+
+  function selectEmployee(id) {
+    const foundEmployee = users.find((employees) => employees.id === id);
+    if (foundEmployee) {
+      setSelectedEmployee([foundEmployee]);
+    }
+  }
 
   return (
     <>
       <section className={style.usersListContainer}>
+        <h1 className={style.headerTitle}>Porsonell list</h1>
         <div className={style.commentBox} data-visible={userCommentFieldOpen}>
           {selectedUser && (
             <p>
-              Comment something about: {selectedUser.firstName}{" "}
+              Comment something about: {selectedUser.firstName}
               {selectedUser.lastName}
             </p>
           )}
@@ -68,15 +101,29 @@ const PersonellList = () => {
         </div>
         <div className={style.listContainer}>
           <ul className={style.list}>
-            <div className={style.title}>
-              <p>Name</p>
-
-              <p>User status</p>
-
-              <p>Email addres</p>
-              <p>User Type</p>
+            <div className={style.headerRow}>
+              <p className={style.nr1AndSelect}>
+                Name{" "}
+                <select
+                  className={style.field}
+                  name="List"
+                  value={selectedList}
+                  onChange={handleSelectList}
+                  required
+                >
+                  <option value="All" default>
+                    All employees
+                  </option>
+                  <option value="Employed">Active Employees</option>
+                  <option value="Former Employee">Former Employees</option>
+                  <option value="Candidate">Candidates</option>
+                </select>
+              </p>
+              <p className={style.nr1}>Position</p>
+              <p className={style.nr8}>Email addres</p>
+              <p className={style.nr6}>Contact</p>
             </div>
-            {users.map((users, index) => (
+            {mapingList.map((users, index) => (
               <div
                 className={style.line}
                 key={users.id}
@@ -89,48 +136,40 @@ const PersonellList = () => {
                       : `${style.listItem} ${style.listItem2}`
                   }
                 >
-                  <p>{users.firstName + " " + users.lastName}</p>
-                  <p>{users.userstatus}</p>
-                  <p>{users.email}</p>
-                  <p>{users.type}</p>
+                  <p className={style.nr1}>
+                    {users.firstName + " " + users.lastName}
+                  </p>
+                  <p className={style.nr1}>{users.position}</p>
+                  <p className={style.nr8}>{users.email}</p>
+                  <p className={style.nr6}>{users.phone}</p>
                   <div className={style.buttons}>
-                    {authorizedUser.firstName +
-                      " " +
-                      authorizedUser.lastName !==
-                    users.firstName + " " + users.lastName ? (
-                      <button
+                    {authorizedUser.userID !== users.id ? (
+                      <ButtonSmall
                         onClick={() => handleUserCommentMenu(users.id)}
-                        className={style.button}
-                      >
-                        Comment
-                      </button>
+                        text={"Comment"}
+                      ></ButtonSmall>
                     ) : null}
-                    <button
+                    <ButtonSmall
                       onClick={() => fetchUserComments(users.id, index)}
-                      className={style.button}
-                    >
-                      {userListCommentID === index ? "Close" : "Get"}
-                    </button>
+                      text={userListCommentID === index ? "Close" : "Get"}
+                    ></ButtonSmall>
+                    <ButtonSmall
+                      onClick={() => selectEmployee(users.id)}
+                      text={"More"}
+                    ></ButtonSmall>
                   </div>
                 </li>
-                <div>
-                  {userComments.map((com) => (
-                    <div
-                      className={style.userComment}
-                      key={com.id}
-                      data-visible={userListCommentID === index}
-                    >
-                      <p>Commented by: {com.author}</p>
-                      <p>{com.commentDate.split("T").join(" ").slice(0, 16)}</p>
-                      <p>{com.comment}</p>
-                    </div>
-                  ))}
-                </div>
+                <EmployeeComments
+                  userComments={userComments}
+                  userListCommentID={userListCommentID}
+                  index={index}
+                ></EmployeeComments>
               </div>
             ))}
           </ul>
         </div>
       </section>
+      <EmployeeDetails selectedEmployee={selectedEmployee}></EmployeeDetails>
     </>
   );
 };
