@@ -111,7 +111,6 @@ export function UserListWrapper(props) {
   const handleRegistrationFormClear = (e) => {
     setUserTemplate(initialContext.userTemplate);
   };
-  // console.log(userTemplate);
 
   const handleCreateUser = async (e) => {
     e.preventDefault();
