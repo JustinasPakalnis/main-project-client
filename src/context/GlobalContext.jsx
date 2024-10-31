@@ -74,19 +74,14 @@ export function ContextWrapper(props) {
   const [notificationPrompt, setNotificationPrompt] = useState(
     initialContext.notificationPrompt
   );
-  // console.log(items);
 
-  // ITEM array is filled with data ant first page opening
+  // Fetch initial data for items and transfer list on component mount
+
   useEffect(function () {
     fetchAllItems();
     fetchTransferListData();
   }, []);
-  useEffect(() => {
-    const foundItem = items.find((s) => s.id === itemID);
-    if (foundItem) {
-      setItem(foundItem);
-    }
-  }, [itemID, items]);
+
   //Clear input field
   const handleFieldClear = () => {
     setItem(initialContext.item);
@@ -147,9 +142,10 @@ export function ContextWrapper(props) {
     handleTransferMenuClose();
   };
 
-  const handleUpdateActive = (id) => {
+  const handleUpdateActive = (item) => {
     setinsertActive(false);
-    setitemID(id);
+    setitemID(item.id);
+    setItem(item);
     setUpdateActive(true);
     handleTransferMenuClose();
   };

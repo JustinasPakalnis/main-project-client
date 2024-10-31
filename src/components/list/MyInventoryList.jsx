@@ -85,7 +85,7 @@ const MyInventoryList = () => {
                     <p className={style.nr8}>{item.comment}</p>
                     <div className={style.buttonBlock}>
                       <ButtonSmall
-                        onClick={() => handleUpdateActive(item.id)}
+                        onClick={() => handleUpdateActive(item)}
                         text={"Update"}
                       />
                       <ButtonSmall
