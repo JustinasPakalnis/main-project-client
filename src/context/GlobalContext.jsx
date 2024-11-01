@@ -193,7 +193,6 @@ export function ContextWrapper(props) {
       console.log(err);
     }
   };
-  // console.log(transferListData);
 
   // Remowe selected item
   const handleDelete = async (id) => {
