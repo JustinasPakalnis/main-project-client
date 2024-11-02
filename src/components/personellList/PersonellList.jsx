@@ -47,11 +47,8 @@ const PersonellList = () => {
     setSelectedEmployee([users[0]]);
   }, []);
 
-  function selectEmployee(id) {
-    const foundEmployee = users.find((employees) => employees.id === id);
-    if (foundEmployee) {
-      setSelectedEmployee([foundEmployee]);
-    }
+  function selectEmployee(user) {
+    setSelectedEmployee([user]);
   }
 
   return (
@@ -154,7 +151,7 @@ const PersonellList = () => {
                       text={userListCommentID === index ? "Close" : "Get"}
                     ></ButtonSmall>
                     <ButtonSmall
-                      onClick={() => selectEmployee(users.id)}
+                      onClick={() => selectEmployee(users)}
                       text={"More"}
                     ></ButtonSmall>
                   </div>
