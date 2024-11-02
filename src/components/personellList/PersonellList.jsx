@@ -25,10 +25,12 @@ const PersonellList = () => {
   } = useContext(UserListContext);
 
   const { authorizedUser } = useContext(LoginContext);
-  const selectedUser = users.find((user) => user.id === userCommentID);
+  const [selectedEmployeeToComment, setSelectedEmployeeToComment] = useState(
+    []
+  );
   const [selectedList, setSelectedList] = useState("All");
-  const [mapingList, setMapingList] = useState(users);
   const [selectedEmployee, setSelectedEmployee] = useState([]);
+  const [mapingList, setMapingList] = useState(users);
 
   function handleSelectList(e) {
     setUserListCommentID(null);
@@ -56,10 +58,10 @@ const PersonellList = () => {
       <section className={style.usersListContainer}>
         <h1 className={style.headerTitle}>Porsonell list</h1>
         <div className={style.commentBox} data-visible={userCommentFieldOpen}>
-          {selectedUser && (
+          {selectedEmployeeToComment && (
             <p>
-              Comment something about: {selectedUser.firstName}
-              {selectedUser.lastName}
+              Comment something about: {selectedEmployeeToComment.firstName}{" "}
+              {selectedEmployeeToComment.lastName}
             </p>
           )}
           <textarea
@@ -120,10 +122,10 @@ const PersonellList = () => {
               <p className={style.nr8}>Email addres</p>
               <p className={style.nr6}>Contact</p>
             </div>
-            {mapingList.map((users, index) => (
+            {mapingList.map((employee, index) => (
               <div
                 className={style.line}
-                key={users.id}
+                key={employee.id}
                 data-visible={userListCommentID === index}
               >
                 <li
@@ -134,24 +136,27 @@ const PersonellList = () => {
                   }
                 >
                   <p className={style.nr1}>
-                    {users.firstName + " " + users.lastName}
+                    {employee.firstName + " " + employee.lastName}
                   </p>
-                  <p className={style.nr1}>{users.position}</p>
-                  <p className={style.nr8}>{users.email}</p>
-                  <p className={style.nr6}>{users.phone}</p>
+                  <p className={style.nr1}>{employee.position}</p>
+                  <p className={style.nr8}>{employee.email}</p>
+                  <p className={style.nr6}>{employee.phone}</p>
                   <div className={style.buttons}>
-                    {authorizedUser.userID !== users.id ? (
+                    {authorizedUser.userID !== employee.id ? (
                       <ButtonSmall
-                        onClick={() => handleUserCommentMenu(users.id)}
+                        onClick={() => {
+                          handleUserCommentMenu(employee.id);
+                          setSelectedEmployeeToComment(employee);
+                        }}
                         text={"Comment"}
                       ></ButtonSmall>
                     ) : null}
                     <ButtonSmall
-                      onClick={() => fetchUserComments(users.id, index)}
+                      onClick={() => fetchUserComments(employee.id, index)}
                       text={userListCommentID === index ? "Close" : "Get"}
                     ></ButtonSmall>
                     <ButtonSmall
-                      onClick={() => selectEmployee(users)}
+                      onClick={() => selectEmployee(employee)}
                       text={"More"}
                     ></ButtonSmall>
                   </div>
