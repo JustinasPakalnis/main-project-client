@@ -21,7 +21,6 @@ const PersonellList = () => {
     userCommentID,
     userListCommentID,
     setUserListCommentID,
-    usersFullNames,
   } = useContext(UserListContext);
 
   const { authorizedUser } = useContext(LoginContext);
@@ -48,10 +47,6 @@ const PersonellList = () => {
   useEffect(() => {
     setSelectedEmployee([users[0]]);
   }, []);
-
-  function selectEmployee(user) {
-    setSelectedEmployee([user]);
-  }
 
   return (
     <>
@@ -156,7 +151,7 @@ const PersonellList = () => {
                       text={userListCommentID === index ? "Close" : "Get"}
                     ></ButtonSmall>
                     <ButtonSmall
-                      onClick={() => selectEmployee(employee)}
+                      onClick={() => setSelectedEmployee([employee])}
                       text={"More"}
                     ></ButtonSmall>
                   </div>
