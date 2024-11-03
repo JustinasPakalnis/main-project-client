@@ -3,14 +3,11 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 export const initialContext = {
   isAuthenticated: false,
-
   authorizedUser: {},
-  darkTheme: false,
   loginMessage: false,
   message: null,
   handleAuthentication: () => {},
   handleLogin: () => {},
-  handleDarkThemeToggle: () => {},
   handleLoginMessage: () => {},
   handleLogOut: () => {},
 };
@@ -21,7 +18,6 @@ export function LoginWrapper(props) {
   const [isAuthenticated, setIsAuthenticated] = useState(
     initialContext.isAuthenticated
   );
-  const [darkTheme, setdarkTheme] = useState(initialContext.darkTheme);
 
   const [authorizedUser, setAuthorizedUser] = useState(
     initialContext.authorizedUser
@@ -46,13 +42,6 @@ export function LoginWrapper(props) {
     }
   }, []);
 
-  const handleDarkThemeToggle = () => {
-    setdarkTheme(!darkTheme);
-  };
-
-  const handleAuthentication = () => {
-    setIsAuthenticated(true);
-  };
   const handleLoginMessage = () => {
     setLoginMessage(false);
   };
@@ -80,13 +69,10 @@ export function LoginWrapper(props) {
           lastName: response.data.user.lastName,
           userType: response.data.user.type,
         };
-
         setAuthorizedUser(user);
-        handleAuthentication();
-
+        setIsAuthenticated(true);
         sessionStorage.setItem("isLogInAuthorized", JSON.stringify(true));
         sessionStorage.setItem("authorizedUser", JSON.stringify(user));
-
         navigate("/main");
       }
       if (
@@ -117,12 +103,9 @@ export function LoginWrapper(props) {
 
   const value = {
     isAuthenticated,
-    handleAuthentication,
     handleLogin,
     message,
     authorizedUser,
-    handleDarkThemeToggle,
-    darkTheme,
     loginMessage,
     handleLoginMessage,
     handleLogOut,
