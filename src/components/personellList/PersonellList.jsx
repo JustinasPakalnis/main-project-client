@@ -28,7 +28,7 @@ const PersonellList = () => {
     []
   );
   const [selectedList, setSelectedList] = useState("All");
-  const [selectedEmployee, setSelectedEmployee] = useState([]);
+  const [selectedEmployee, setSelectedEmployee] = useState(users[0]);
   const [mapingList, setMapingList] = useState(users);
 
   function handleSelectList(e) {
@@ -45,7 +45,7 @@ const PersonellList = () => {
   }, [selectedList]);
 
   useEffect(() => {
-    setSelectedEmployee([users[0]]);
+    setSelectedEmployee(users[0]);
   }, []);
 
   return (
@@ -151,7 +151,7 @@ const PersonellList = () => {
                       text={userListCommentID === index ? "Close" : "Get"}
                     ></ButtonSmall>
                     <ButtonSmall
-                      onClick={() => setSelectedEmployee([employee])}
+                      onClick={() => setSelectedEmployee(employee)}
                       text={"More"}
                     ></ButtonSmall>
                   </div>
@@ -166,7 +166,10 @@ const PersonellList = () => {
           </ul>
         </div>
       </section>
-      <EmployeeDetails selectedEmployee={selectedEmployee}></EmployeeDetails>
+      <EmployeeDetails
+        employee={selectedEmployee}
+        users={users}
+      ></EmployeeDetails>
     </>
   );
 };
