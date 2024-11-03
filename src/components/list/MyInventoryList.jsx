@@ -24,6 +24,7 @@ const MyInventoryList = () => {
   useEffect(() => {
     setNewSearchList(items);
   }, [items, authorizedUserFullName]);
+  console.log(newSearchList);
 
   function handleSearch() {
     setNewSearchList(
