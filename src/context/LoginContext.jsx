@@ -32,10 +32,14 @@ export function LoginWrapper(props) {
   const loginTokenLocalSession = JSON.parse(
     sessionStorage.getItem("isLogInAuthorized")
   );
+  const authorizedUserLocalSession = JSON.parse(
+    sessionStorage.getItem("authorizedUser")
+  );
 
   useEffect(() => {
-    if (loginTokenLocalSession) {
-      setIsAuthenticated(true);
+    if (loginTokenLocalSession && authorizedUserLocalSession) {
+      setIsAuthenticated(loginTokenLocalSession);
+      setAuthorizedUser(authorizedUserLocalSession);
       navigate("/main");
     } else {
       navigate("/");
@@ -56,6 +60,7 @@ export function LoginWrapper(props) {
     setIsAuthenticated(false);
     setAuthorizedUser(initialContext.authorizedUser);
     sessionStorage.setItem("isLogInAuthorized", JSON.stringify(false));
+    sessionStorage.setItem("authorizedUser", JSON.stringify(null));
     navigate("/");
   };
   const serverAPI = "https://main-project-server.onrender.com";
@@ -69,14 +74,19 @@ export function LoginWrapper(props) {
       });
 
       if (response.data.message === "Login approved") {
-        setAuthorizedUser({
+        const user = {
           userID: response.data.user.id,
           firstName: response.data.user.firstName,
           lastName: response.data.user.lastName,
           userType: response.data.user.type,
-        });
+        };
+
+        setAuthorizedUser(user);
         handleAuthentication();
+
         sessionStorage.setItem("isLogInAuthorized", JSON.stringify(true));
+        sessionStorage.setItem("authorizedUser", JSON.stringify(user));
+
         navigate("/main");
       }
       if (
