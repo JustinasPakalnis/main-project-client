@@ -89,7 +89,7 @@ export function LoginWrapper(props) {
       }
     } catch (error) {
       console.error("Login error:", error);
-      setMessage("LOGIN HAS BEEN DENIED!");
+      setMessage("Server error!");
       setTimeout(() => {
         setMessage(null);
       }, 3000);
