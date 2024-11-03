@@ -29,6 +29,19 @@ export function LoginWrapper(props) {
   const [message, setMessage] = useState(initialContext.message);
   const [loginMessage, setLoginMessage] = useState(initialContext.loginMessage);
 
+  const loginTokenLocalSession = JSON.parse(
+    sessionStorage.getItem("isLogInAuthorized")
+  );
+
+  useEffect(() => {
+    if (loginTokenLocalSession) {
+      setIsAuthenticated(true);
+      navigate("/main");
+    } else {
+      navigate("/");
+    }
+  }, []);
+
   const handleDarkThemeToggle = () => {
     setdarkTheme(!darkTheme);
   };
@@ -42,6 +55,7 @@ export function LoginWrapper(props) {
   const handleLogOut = () => {
     setIsAuthenticated(false);
     setAuthorizedUser(initialContext.authorizedUser);
+    sessionStorage.setItem("isLogInAuthorized", JSON.stringify(false));
     navigate("/");
   };
   const serverAPI = "https://main-project-server.onrender.com";
@@ -62,6 +76,7 @@ export function LoginWrapper(props) {
           userType: response.data.user.type,
         });
         handleAuthentication();
+        sessionStorage.setItem("isLogInAuthorized", JSON.stringify(true));
         navigate("/main");
       }
       if (
