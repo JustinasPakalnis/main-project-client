@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 export const initialContext = {
   isAuthenticated: false,
@@ -14,6 +14,7 @@ export const initialContext = {
 export const LoginContext = createContext(initialContext);
 
 export function LoginWrapper(props) {
+  const location = useLocation();
   const navigate = useNavigate();
   const [isAuthenticated, setIsAuthenticated] = useState(
     initialContext.isAuthenticated
@@ -25,18 +26,23 @@ export function LoginWrapper(props) {
   const [message, setMessage] = useState(initialContext.message);
   const [loginMessage, setLoginMessage] = useState(initialContext.loginMessage);
 
-  const loginTokenLocalSession = JSON.parse(
-    sessionStorage.getItem("isLogInAuthorized")
-  );
-  const authorizedUserLocalSession = JSON.parse(
-    sessionStorage.getItem("authorizedUser")
-  );
-
   useEffect(() => {
+    sessionStorage.setItem("lastVisitedPath", location.pathname);
+  }, [location]);
+  useEffect(() => {
+    const lastVisitedPath =
+      sessionStorage.getItem("lastVisitedPath") || "/main";
+    const loginTokenLocalSession = JSON.parse(
+      sessionStorage.getItem("isLogInAuthorized")
+    );
+    const authorizedUserLocalSession = JSON.parse(
+      sessionStorage.getItem("authorizedUser")
+    );
     if (loginTokenLocalSession && authorizedUserLocalSession) {
       setIsAuthenticated(loginTokenLocalSession);
       setAuthorizedUser(authorizedUserLocalSession);
       navigate("/main");
+      // navigate(lastVisitedPath);
     } else {
       navigate("/");
     }
