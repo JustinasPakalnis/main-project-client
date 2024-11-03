@@ -59,8 +59,8 @@ export function LoginWrapper(props) {
   const handleLogOut = () => {
     setIsAuthenticated(false);
     setAuthorizedUser(initialContext.authorizedUser);
-    sessionStorage.setItem("isLogInAuthorized", JSON.stringify(false));
-    sessionStorage.setItem("authorizedUser", JSON.stringify(null));
+    sessionStorage.removeItem("isLogInAuthorized");
+    sessionStorage.removeItem("authorizedUser");
     navigate("/");
   };
   const serverAPI = "https://main-project-server.onrender.com";
